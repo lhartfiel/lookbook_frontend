@@ -21,21 +21,23 @@ const Chatbot = () => {
   return (
     <>
       <form
-        className="flex flex-wrap items-center mx-auto self-center justify-center"
+        className="flex flex-wrap items-center mx-auto self-center justify-center w-full max-w-[480px]"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <label htmlFor="chatinput" className="ml-0 mr-auto mb-3">
-          Describe the hair style you're looking for...
-        </label>
-        <textarea
-          className="border-1 rounded-xl border-zinc-200 w-full p-3 h-[120px] shadow-lg"
-          name="chatinput"
-          id="chat-input"
-          placeholder="I'd like a ..."
-        />
+        <fieldset className="flex flex-wrap basis-full justify-center">
+          <label htmlFor="chatinput" className="w-full mb-3">
+            Describe the hair style you're looking for:
+          </label>
+          <textarea
+            className="flex-grow field-sizing-content w-full border-1 rounded-4xl border-zinc-200 shadow-lg py-2 px-4"
+            name="chatinput"
+            id="chat-input"
+            placeholder="I'd like a ..."
+          />
+        </fieldset>
         <button
           type="submit"
-          className="bg-pink-800 hover:bg-pink-900 cursor-pointer text-white px-4 py-2 rounded-lg mt-4 self-end mr-0 ml-auto"
+          className="flex bg-pink-800 hover:bg-pink-900 cursor-pointer text-white px-4 py-2 rounded-4xl mt-4 self-end mr-0 ml-auto"
         >
           Show me styles
         </button>
