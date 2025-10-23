@@ -9,12 +9,12 @@ const Chatbot = () => {
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log("submit");
     e.preventDefault();
     mutation.mutate();
   };
 
-  if (mutation.isPending) return <div>Loading...</div>;
+  console.log("pending", mutation.isPending);
+  // if (mutation.isPending) return <div>Loading...</div>;
   if (mutation.error)
     return <div>An error has occurred: {mutation.error.message}</div>;
   console.log("data", mutation.data);
@@ -42,8 +42,11 @@ const Chatbot = () => {
           Show me styles
         </button>
       </form>
-      {mutation?.data?.results.length && (
-        <StyleResults results={mutation.data?.results} />
+      {(mutation.isPending || mutation?.data?.results.length > 0) && (
+        <StyleResults
+          results={mutation.data?.results}
+          loading={mutation.isPending}
+        />
       )}
     </>
   );
