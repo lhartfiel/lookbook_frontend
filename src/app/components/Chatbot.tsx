@@ -1,20 +1,24 @@
 "use client";
+import { useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { fetchStyles } from "../apis/fetch_styles";
 import { StyleResults } from "./StyleResults";
+import { StyleTextResponse } from "./StyleTextResponse";
 
 const Chatbot = () => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const mutation = useMutation({
-    mutationFn: fetchStyles,
+    mutationFn: (value: string) => fetchStyles(value),
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log("submit");
     e.preventDefault();
-    mutation.mutate();
+    const query = textareaRef.current?.value || "";
+    mutation.mutate(query);
   };
 
-  if (mutation.isPending) return <div>Loading...</div>;
+  console.log("pending", mutation.isPending);
+
   if (mutation.error)
     return <div>An error has occurred: {mutation.error.message}</div>;
   console.log("data", mutation.data);
@@ -29,6 +33,7 @@ const Chatbot = () => {
             Describe the hair style you're looking for:
           </label>
           <textarea
+            ref={textareaRef}
             className="flex-grow field-sizing-content w-full border-1 rounded-4xl border-zinc-200 shadow-lg py-2 px-4"
             name="chatinput"
             id="chat-input"
@@ -42,8 +47,15 @@ const Chatbot = () => {
           Show me styles
         </button>
       </form>
-      {mutation?.data?.results.length && (
-        <StyleResults results={mutation.data?.results} />
+      {mutation.isPending && <p>Loading...</p>}
+      {!mutation.isPending && (
+        <>
+          <StyleTextResponse text={mutation?.data?.aiResponse} />
+          <StyleResults
+            results={mutation.data?.results}
+            loading={mutation.isPending}
+          />
+        </>
       )}
     </>
   );
