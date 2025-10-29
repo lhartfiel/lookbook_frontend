@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
         search: "",
       },
     ],
+    formats: ["image/webp", "image/avif"],
+    minimumCacheTTL: 60,
   },
 };
 

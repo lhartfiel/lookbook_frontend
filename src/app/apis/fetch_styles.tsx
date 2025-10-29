@@ -1,12 +1,14 @@
 const url =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/styles/";
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/styles/search/";
 
-export const fetchStyles = async () => {
+export const fetchStyles = async (queryText: string) => {
   try {
     const response = await fetch(url, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ query: queryText }),
     });
 
     if (!response.ok) {
@@ -14,10 +16,11 @@ export const fetchStyles = async () => {
     }
 
     const data = await response.json();
-
+    console.log("dataRes", data);
     return {
       count: data.count,
       results: data.results || [],
+      aiResponse: data.ai_response || "",
       next: data.next,
       previous: data.previous,
     };
