@@ -2,6 +2,7 @@
 import { useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { StyleGallery } from "./StyleGallery";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -52,6 +53,7 @@ const StyleResults = ({
   const [showDisplay, setShowDisplay] = useState(false);
   const [isImageLoading, setIsImageLoading] = useState(true);
   const [activeImages, setActiveImages] = useState({ images: [], title: "" });
+  const router = useRouter();
 
   if (!results || results.length === 0) {
     return <div>No styles found</div>;
@@ -60,8 +62,6 @@ const StyleResults = ({
     setActiveImages({ images, title });
     setShowDisplay((prev) => !prev);
   };
-
-  console.log(results);
 
   return (
     <>
@@ -104,7 +104,6 @@ const StyleResults = ({
                 src={result.style_image[0].image}
                 alt={result.style_image[0].image_alt}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 75vw, 340px"
-                // unoptimized={true}
               ></Image>
             </button>
             <article className="px-4 py-4 flex flex-wrap ">
@@ -116,6 +115,9 @@ const StyleResults = ({
               <p className="w-full">Maintenance: {result?.maintenance}</p>
               <p className="w-full">Thickness: {result?.thickness}</p>
             </article>
+            {/* <button onClick={(e) => goToStyle(e, result)}>
+              See Style Details
+            </button> */}
           </div>
         ))}
       </div>

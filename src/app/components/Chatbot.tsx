@@ -29,12 +29,15 @@ const Chatbot = () => {
         onSubmit={(e) => handleSubmit(e)}
       >
         <fieldset className="flex flex-wrap basis-full justify-center">
-          <label htmlFor="chatinput" className="w-full mb-3">
+          <label
+            htmlFor="chatinput"
+            className="w-full mb-2 ml-3 font-medium text-body-primary"
+          >
             Describe the hair style you're looking for:
           </label>
           <textarea
             ref={textareaRef}
-            className="flex-grow field-sizing-content w-full border-1 rounded-4xl border-zinc-200 shadow-lg py-2 px-4"
+            className="flex-grow bg-white field-sizing-content w-full border-1 rounded-4xl border-zinc-200 shadow-lg py-3 px-4"
             name="chatinput"
             id="chat-input"
             placeholder="I'd like a ..."
@@ -42,13 +45,13 @@ const Chatbot = () => {
         </fieldset>
         <button
           type="submit"
-          className="flex bg-pink-800 hover:bg-pink-900 cursor-pointer text-white px-4 py-2 rounded-4xl mt-4 self-end mr-0 ml-auto"
+          className="flex bg-primary font-semibold hover:bg-pink-900 cursor-pointer text-white px-4 py-2 rounded-4xl mt-4 self-end mr-0 ml-auto"
         >
           Show me styles
         </button>
       </form>
       {mutation.isPending && <p>Loading...</p>}
-      {!mutation.isPending && (
+      {!mutation.isPending && mutation.data?.results.length > 0 && (
         <>
           <StyleTextResponse text={mutation?.data?.aiResponse} />
           <StyleResults
