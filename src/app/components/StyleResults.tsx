@@ -6,8 +6,9 @@ import { useRouter } from "next/navigation";
 import { StyleGallery } from "./StyleGallery";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useStyleStore } from "../state/store";
 
-export interface imageType {
+export interface ImageType {
   id: number;
   image: string;
   image_alt: string;
@@ -16,14 +17,14 @@ export interface imageType {
   view: string;
 }
 
-interface resultsType {
+export interface ResultsType {
   client_permission: boolean;
   created_at: string;
   description: string;
   id: number;
   length: string;
   maintenance: string;
-  style_image: imageType[];
+  style_image: ImageType[];
   stylist_name: string;
   tags: string[];
   texture: string;
@@ -43,24 +44,25 @@ export default function myImageLoader() {
   );
 }
 
-const StyleResults = ({
-  results,
-  loading,
-}: {
-  results?: resultsType[];
-  loading: boolean;
-}) => {
+const StyleResults = ({ loading }: { loading: boolean }) => {
+  const { results, setSelectedStyle } = useStyleStore();
+  const router = useRouter();
   const [showDisplay, setShowDisplay] = useState(false);
   const [isImageLoading, setIsImageLoading] = useState(true);
   const [activeImages, setActiveImages] = useState({ images: [], title: "" });
-  const router = useRouter();
 
   if (!results || results.length === 0) {
     return <div>No styles found</div>;
   }
-  const toggleGallery = (images: imageType[], title: string) => {
+  const toggleGallery = (images: ImageType[], title: string) => {
     setActiveImages({ images, title });
     setShowDisplay((prev) => !prev);
+  };
+
+  const goToStyle = (e: React.MouseEvent, result: resultsType) => {
+    e.preventDefault();
+    setSelectedStyle(result);
+    router.push(`/style/${result.id}`);
   };
 
   return (
@@ -115,9 +117,12 @@ const StyleResults = ({
               <p className="w-full">Maintenance: {result?.maintenance}</p>
               <p className="w-full">Thickness: {result?.thickness}</p>
             </article>
-            {/* <button onClick={(e) => goToStyle(e, result)}>
+            <button
+              className="cursor-pointer"
+              onClick={(e) => goToStyle(e, result)}
+            >
               See Style Details
-            </button> */}
+            </button>
           </div>
         ))}
       </div>
