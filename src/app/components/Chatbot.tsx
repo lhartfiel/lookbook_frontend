@@ -5,6 +5,7 @@ import { fetchStyles } from "../apis/fetch_styles";
 import { StyleResults } from "./StyleResults";
 import { StyleTextResponse } from "./StyleTextResponse";
 import { useStyleStore } from "../state/store";
+import Skeleton from "react-loading-skeleton";
 
 const Chatbot = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -57,7 +58,21 @@ const Chatbot = () => {
           Show me styles
         </button>
       </form>
-      {mutation.isPending && <p>Loading...</p>}
+      {mutation.isPending && (
+        <div className="mt-6">
+          {Array.from({ length: 6 }, (_, idx) => {
+            return (
+              <Skeleton
+                baseColor="#c4c4c4"
+                highlightColor="#f5f5f5"
+                width="100%"
+                height="16px"
+              />
+            );
+          })}
+        </div>
+      )}
+
       {!mutation.isPending && results.length > 0 && (
         <>
           <StyleTextResponse />
