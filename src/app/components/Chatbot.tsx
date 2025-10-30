@@ -1,12 +1,14 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { fetchStyles } from "../apis/fetch_styles";
 import { StyleResults } from "./StyleResults";
 import { StyleTextResponse } from "./StyleTextResponse";
+import { useStyleStore } from "../state/store";
 
 const Chatbot = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { results, updateResults, updateAiResponse } = useStyleStore();
   const mutation = useMutation({
     mutationFn: (value: string) => fetchStyles(value),
   });
@@ -17,7 +19,12 @@ const Chatbot = () => {
     mutation.mutate(query);
   };
 
-  console.log("pending", mutation.isPending);
+  useEffect(() => {
+    if (!mutation.isPending && mutation?.data) {
+      updateResults(mutation?.data.results);
+      updateAiResponse(mutation?.data.aiResponse);
+    }
+  }, [mutation.isPending]);
 
   if (mutation.error)
     return <div>An error has occurred: {mutation.error.message}</div>;
@@ -51,13 +58,10 @@ const Chatbot = () => {
         </button>
       </form>
       {mutation.isPending && <p>Loading...</p>}
-      {!mutation.isPending && mutation.data?.results.length > 0 && (
+      {!mutation.isPending && results.length > 0 && (
         <>
-          <StyleTextResponse text={mutation?.data?.aiResponse} />
-          <StyleResults
-            results={mutation.data?.results}
-            loading={mutation.isPending}
-          />
+          <StyleTextResponse />
+          <StyleResults loading={mutation.isPending} />
         </>
       )}
     </>
