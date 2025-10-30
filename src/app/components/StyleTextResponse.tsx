@@ -1,10 +1,15 @@
 import { useStyleStore } from "../state/store";
-const StyleTextResponse = ({ text }: { text: string }) => {
+import { TypeAnimation } from "react-type-animation";
+
+const StyleTextResponse = () => {
   const { aiResponse } = useStyleStore();
   return (
-    <p className="text-body-primary font-semibold text-body mt-6">
-      {aiResponse}
-    </p>
+    <TypeAnimation
+      sequence={[`${aiResponse}`, 1000]}
+      wrapper="p"
+      speed={75}
+      className="text-body-primary font-medium text-body mt-6"
+    />
   );
 };
 

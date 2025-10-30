@@ -85,7 +85,7 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
             key={result.id}
             className="relative flex flex-col style items-start w-full shadow-xl bg-white rounded-xl"
           >
-            <button className="relative h-full w-full aspect-[2/3] md:max-h-[460] lg:max-h-[360] max-h-full">
+            <button className="relative h-full w-full aspect-[2/3] md:max-h-[460px] lg:max-h-[260px] lg:max-h-[320px] max-h-full">
               {isImageLoading && (
                 <div className="absolute inset-0">
                   <Skeleton
