@@ -63,6 +63,7 @@ const Chatbot = () => {
           {Array.from({ length: 6 }, (_, idx) => {
             return (
               <Skeleton
+                key={`text-skeleton-${idx}`}
                 baseColor="#c4c4c4"
                 highlightColor="#f5f5f5"
                 width="100%"

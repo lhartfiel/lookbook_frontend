@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { createPortal } from "react-dom";
 import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import { Thumbnails } from "yet-another-react-lightbox/plugins";
@@ -23,7 +24,7 @@ const StyleGallery = ({
 }) => {
   const captionsRef = useRef(null);
   const thumbnailsRef = useRef(null);
-  return (
+  return createPortal(
     <Lightbox
       open={showLightbox}
       close={() => handleLightbox()}
@@ -46,7 +47,8 @@ const StyleGallery = ({
           height: 2560,
         };
       })}
-    />
+    />,
+    document.body
   );
 };
 

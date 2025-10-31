@@ -16,6 +16,7 @@
   --color-primary: var(--color-blue-600);
   --color-secondary: var(--color-green-400);
 
+  --text-h1: 32px;
   --text-h2: 24px;
   --text-body: 18px;
 
@@ -34,4 +35,21 @@ body {
   background: var(--color-blue-200);
   color: var(--foreground);
   font-family: var(--font-barlow);
+}
+
+ul li {
+  left: 0;
+  position: relative;
+  text-indent: 16px;
+}
+
+ul li:before {
+  background: var(--color-green-400);
+  border-radius: 100%;
+  content: "";
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  left: 0;
+  top: 9px;
 }

@@ -1,6 +1,5 @@
 "use client";
 import { useState, useRef } from "react";
-import { createPortal } from "react-dom";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { StyleGallery } from "./StyleGallery";
@@ -110,12 +109,8 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
             </button>
             <article className="px-4 py-4 flex flex-wrap ">
               <h2 className="w-full m-0">{result.title}</h2>
-              <h3>{result.description}</h3>
               <h3 className="w-full">Stylist: {result.stylist_name}</h3>
-              <p className="w-full">Texture: {result?.texture}</p>
-              <p className="w-full">Length: {result?.length}</p>
-              <p className="w-full">Maintenance: {result?.maintenance}</p>
-              <p className="w-full">Thickness: {result?.thickness}</p>
+              <p>{result.description}</p>
             </article>
             <button
               className="cursor-pointer"
@@ -126,15 +121,13 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
           </div>
         ))}
       </div>
-      {showDisplay &&
-        createPortal(
-          <StyleGallery
-            handleLightbox={() => toggleGallery([], "")}
-            showLightbox={showDisplay}
-            imageInfo={activeImages}
-          />,
-          document.body
-        )}
+      {showDisplay && (
+        <StyleGallery
+          handleLightbox={() => toggleGallery([], "")}
+          showLightbox={showDisplay}
+          imageInfo={activeImages}
+        />
+      )}
     </>
   );
 };
