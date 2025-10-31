@@ -28,19 +28,24 @@ const StyleDetail = () => {
         {selectedStyle?.title}
       </h1>
       <div className="lg:col-start-3 lg:col-span-8 col-span-10 col-start-1 flex flex-wrap sm:flex-nowrap shadow-2xl">
-        <div className="flex md:w-[66.6%] min-h-[500px] w-full relative">
+        <div className="flex w-full md:w-3/5 xl:w-2/3 min-h-[500px] hover:bg-gray-600 z-10">
           {/* Add a Skeleton for image loading */}
-          <button onClick={toggleGallery} className="cursor-pointer">
-            <Image
-              fill
-              objectFit="cover"
-              className="object-top"
-              src={selectedStyle?.style_image[0].image || ""}
-              alt={selectedStyle?.style_image[0].image_alt || ""}
-            />
+          <button
+            onClick={toggleGallery}
+            className="w-full relative cursor-pointer before:transition before:duration-500 hover:before:bg-gray-800 hover:before:top-0 hover:before:absolute hover:before:bottom-0 hover:before:left-0 hover:before:right-0 hover:before:z-20 hover:before:opacity-75"
+          >
+            {selectedStyle?.style_image[0].image && (
+              <Image
+                fill
+                objectFit="cover"
+                className="object-top"
+                src={selectedStyle?.style_image[0].image}
+                alt={selectedStyle?.style_image[0].image_alt || ""}
+              />
+            )}
           </button>
         </div>
-        <div className="flex flex-wrap flex-col text-body-primary justify-between min-h-[540px] bg-white h-full py-6 px-4 rounded-tr-sm rounded-br-sm">
+        <div className="flex flex-wrap flex-col text-body-primary justify-between h-auto md:min-h-[540px] w-full md:w-2/5 xl:w-1/3 md:h-full bg-white py-6 px-4 rounded-tr-sm rounded-br-sm">
           <span>
             <h2 className="text-h2 w-full">
               Stylist: {selectedStyle?.stylist_name}
@@ -56,7 +61,7 @@ const StyleDetail = () => {
             </ul>
           </span>
           {selectedStyle?.tags && selectedStyle?.tags.length > 0 && (
-            <div>
+            <div className="mt-5">
               {selectedStyle.tags.map((tag) => (
                 <Tag tagName={tag} key={tag} />
               ))}
