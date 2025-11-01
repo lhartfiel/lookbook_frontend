@@ -9,7 +9,13 @@ import Skeleton from "react-loading-skeleton";
 
 const Chatbot = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const { results, updateResults, updateAiResponse } = useStyleStore();
+  const {
+    results,
+    aiResponse,
+    updateResults,
+    updateAiResponse,
+    updateResponseInitialized,
+  } = useStyleStore();
   const mutation = useMutation({
     mutationFn: (value: string) => fetchStyles(value),
   });
@@ -18,14 +24,21 @@ const Chatbot = () => {
     e.preventDefault();
     const query = textareaRef.current?.value || "";
     mutation.mutate(query);
+    updateResponseInitialized(true);
+    updateAiResponse("");
   };
 
   useEffect(() => {
     if (!mutation.isPending && mutation?.data) {
+      console.log("call with new results");
       updateResults(mutation?.data.results);
       updateAiResponse(mutation?.data.aiResponse);
     }
   }, [mutation.isPending]);
+
+  useEffect(() => {
+    updateResponseInitialized(false);
+  }, []);
 
   if (mutation.error)
     return <div>An error has occurred: {mutation.error.message}</div>;
@@ -74,11 +87,13 @@ const Chatbot = () => {
         </div>
       )}
 
-      {!mutation.isPending && results.length > 0 && (
+      {!mutation.isPending && results.length > 0 ? (
         <>
           <StyleTextResponse />
           <StyleResults loading={mutation.isPending} />
         </>
+      ) : (
+        <p className="mt-6">{aiResponse}</p>
       )}
     </>
   );

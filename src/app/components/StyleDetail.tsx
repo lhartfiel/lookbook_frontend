@@ -2,17 +2,24 @@
 import { useState } from "react";
 import { useStyleStore } from "../state/store";
 import { useRouter } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMaximize } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { StyleGallery } from "./StyleGallery";
 import { Tag } from "./Common/Tag";
 
 const StyleDetail = () => {
   const router = useRouter();
-  const [showDisplay, setShowDisplay] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
+  const [photoIsHovered, setPhotoIsHovered] = useState(false);
   const { selectedStyle } = useStyleStore();
 
   const toggleGallery = () => {
-    setShowDisplay((prev) => !prev);
+    setShowGallery((prev) => !prev);
+  };
+
+  const hoverImage = () => {
+    setPhotoIsHovered((prev) => !prev);
   };
   return (
     <>
@@ -31,17 +38,36 @@ const StyleDetail = () => {
         <div className="flex w-full md:w-3/5 xl:w-2/3 min-h-[500px] hover:bg-gray-600 z-10">
           {/* Add a Skeleton for image loading */}
           <button
+            onMouseEnter={hoverImage}
+            onMouseLeave={hoverImage}
             onClick={toggleGallery}
             className="w-full relative cursor-pointer before:transition before:duration-500 hover:before:bg-gray-800 hover:before:top-0 hover:before:absolute hover:before:bottom-0 hover:before:left-0 hover:before:right-0 hover:before:z-20 hover:before:opacity-75"
           >
             {selectedStyle?.style_image[0].image && (
-              <Image
-                fill
-                objectFit="cover"
-                className="object-top"
-                src={selectedStyle?.style_image[0].image}
-                alt={selectedStyle?.style_image[0].image_alt || ""}
-              />
+              <>
+                <span
+                  className={`transition duration-500 absolute z-20 left-0 right-0 top-[50%] translate-y-[-50%] mx-auto  ${
+                    photoIsHovered
+                      ? "opacity-100 scale-100"
+                      : "opacity-0 scale-0"
+                  }`}
+                >
+                  <p className="text-body text-white mb-3 font-medium">
+                    Click photo to see style gallery
+                  </p>
+                  <FontAwesomeIcon
+                    className="text-[72px] text-white opacity-75 "
+                    icon={faMaximize}
+                  />
+                </span>
+                <Image
+                  fill
+                  objectFit="cover"
+                  className="object-top"
+                  src={selectedStyle?.style_image[0].image}
+                  alt={selectedStyle?.style_image[0].image_alt || ""}
+                />
+              </>
             )}
           </button>
         </div>
@@ -69,10 +95,10 @@ const StyleDetail = () => {
           )}
         </div>
       </div>
-      {showDisplay && (
+      {showGallery && (
         <StyleGallery
           handleLightbox={() => toggleGallery()}
-          showLightbox={showDisplay}
+          showLightbox={showGallery}
           imageInfo={{
             images: selectedStyle?.style_image ?? [],
             title: selectedStyle?.title ?? "",

@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Quicksand, Barlow } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css"; // Import the CSS
+
+config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
