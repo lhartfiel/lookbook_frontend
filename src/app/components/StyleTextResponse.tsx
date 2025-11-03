@@ -14,7 +14,9 @@ const StyleTextResponse = () => {
           className="text-body-primary font-medium text-body mt-6"
         />
       ) : (
-        <p>{aiResponse}</p>
+        <p className="text-body-primary font-medium text-body mt-6">
+          {aiResponse}
+        </p>
       )}
     </>
   );
