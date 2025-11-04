@@ -1,8 +1,9 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { StyleGallery } from "./StyleGallery";
+import { Button } from "./Common/Button";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useStyleStore } from "../state/store";
@@ -58,7 +59,7 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
     setShowDisplay((prev) => !prev);
   };
 
-  const goToStyle = (e: React.MouseEvent, result: resultsType) => {
+  const goToStyle = (e: React.MouseEvent, result: ResultsType) => {
     e.preventDefault();
     setSelectedStyle(result);
     router.push(`/style/${result.id}`);
@@ -66,7 +67,7 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-[1024px] mt-8 mx-auto justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-[1024px] my-8 mx-auto justify-center">
         {loading &&
           Array.from({ length: 3 }, (_, idx) => {
             return (
@@ -112,12 +113,12 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
               <h3 className="w-full">Stylist: {result.stylist_name}</h3>
               <p>{result.description}</p>
             </article>
-            <button
-              className="cursor-pointer"
-              onClick={(e) => goToStyle(e, result)}
-            >
-              See Style Details
-            </button>
+            <Button
+              customClasses="justify-end"
+              text="See Style Details"
+              type="text"
+              callback={(e) => goToStyle(e, result)}
+            ></Button>
           </div>
         ))}
       </div>

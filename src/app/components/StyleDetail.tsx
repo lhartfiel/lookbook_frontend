@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMaximize } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import { Button } from "./Common/Button";
 import { StyleGallery } from "./StyleGallery";
 import { Tag } from "./Common/Tag";
 
@@ -23,13 +24,14 @@ const StyleDetail = () => {
   };
   return (
     <>
-      <span className="lg:col-start-2 lg:col-span-2">
-        <button
-          className="cursor-pointer text-body-primary w-full"
-          onClick={() => router.back()}
-        >
-          Back
-        </button>
+      <span className="lg:col-start-3 lg:col-span-2 col-start-2 col-span-3 self-end lg:flex-start">
+        <Button
+          arrowPosition="left"
+          customClasses="justify-start"
+          type="text"
+          text="Back"
+          callback={() => router.back()}
+        ></Button>
       </span>
       <h1 className="text-h1 font-bold w-full lg:col-start-3 col-span-full">
         {selectedStyle?.title}

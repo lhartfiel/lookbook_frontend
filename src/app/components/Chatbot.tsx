@@ -2,6 +2,7 @@
 import { useRef, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { fetchStyles } from "../apis/fetch_styles";
+import { Button } from "./Common/Button";
 import { StyleResults } from "./StyleResults";
 import { StyleTextResponse } from "./StyleTextResponse";
 import { useStyleStore } from "../state/store";
@@ -64,12 +65,13 @@ const Chatbot = () => {
             placeholder="I'd like a ..."
           />
         </fieldset>
-        <button
+        <Button text="Show me styles" type="submit"></Button>
+        {/* <button
           type="submit"
           className="flex bg-primary font-semibold hover:bg-pink-900 cursor-pointer text-white px-4 py-2 rounded-4xl mt-4 self-end mr-0 ml-auto"
         >
           Show me styles
-        </button>
+        </button> */}
       </form>
       {mutation.isPending && (
         <div className="mt-6">
