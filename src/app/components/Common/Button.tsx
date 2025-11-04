@@ -28,9 +28,14 @@ const Button = ({
         <button
           onClick={callback}
           type={`${type === "submit" ? "submit" : "button"}`}
-          className="flex bg-primary font-semibold transition duration-300 ease-in-out hover:bg-pink-900 cursor-pointer text-white px-4 py-2 rounded-4xl mt-4 self-end mr-0 ml-auto"
+          className="flex items-center group bg-primary font-semibold transition duration-300 ease-in-out hover:bg-primary-dark cursor-pointer text-white px-4 py-2 rounded-4xl mt-4 self-end mr-0 ml-auto"
         >
           {text}
+
+          <FontAwesomeIcon
+            icon={faArrowRight}
+            className="relative text-[0px] group-hover:text-lg text-white text-right pl-1 transition-all ease-in-out duration-400 translate-x-0 group-hover:translate-x-2"
+          />
         </button>
       )}
       {type === "text" && (
