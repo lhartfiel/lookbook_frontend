@@ -1,23 +1,11 @@
 import type { Metadata } from "next";
-import { Quicksand, Barlow } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { BaseLayout } from "./components/BaseLayout";
+
 import "@fortawesome/fontawesome-svg-core/styles.css"; // Import the CSS
 
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically
-
-const quicksand = Quicksand({
-  variable: "--font-quicksand",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const barlow = Barlow({
-  variable: "--font-barlow",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 export const metadata: Metadata = {
   title: "Lookbook",
@@ -29,11 +17,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={`${barlow.className} antialiased`}>
-        <Providers>{children}</Providers>
-      </body>
-    </html>
-  );
+  return <BaseLayout children={children} />;
 }

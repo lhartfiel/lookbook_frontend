@@ -15,13 +15,13 @@ const ToggleMode = ({
         <FontAwesomeIcon
           onClick={handleToggle}
           className="text-4xl"
-          icon={faToggleOff}
+          icon={faToggleOn}
         ></FontAwesomeIcon>
       ) : (
         <FontAwesomeIcon
           onClick={handleToggle}
           className="text-4xl"
-          icon={faToggleOn}
+          icon={faToggleOff}
         ></FontAwesomeIcon>
       )}
     </>

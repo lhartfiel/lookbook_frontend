@@ -20,7 +20,7 @@ const Button = ({
   customClasses?: string;
   type: ButtonType;
   text: string;
-  callback: CallbackFunction;
+  callback?: CallbackFunction;
 }) => {
   return (
     <>
