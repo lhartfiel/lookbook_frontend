@@ -83,9 +83,9 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
         {results.map((result) => (
           <div
             key={result.id}
-            className="relative flex flex-col style items-start w-full shadow-xl bg-white rounded-xl"
+            className="relative flex flex-col style items-start w-full drop-shadow-xl dark:drop-shadow-2xl hover:3xl bg-white rounded-xl"
           >
-            <button className="relative h-full w-full aspect-[2/3] md:max-h-[460px] lg:max-h-[260px] lg:max-h-[320px] max-h-full">
+            <button className="relative h-full w-full aspect-[2/3] md:max-h-[460px] lg:max-h-[320px] max-h-full">
               {isImageLoading && (
                 <div className="absolute inset-0">
                   <Skeleton
@@ -109,9 +109,9 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
               ></Image>
             </button>
             <article className="px-4 py-4 flex flex-wrap ">
-              <h2 className="w-full m-0">{result.title}</h2>
-              <h3 className="w-full">Stylist: {result.stylist_name}</h3>
-              <p>{result.description}</p>
+              <h2 className="text-h2 font-bold w-full m-0">{result.title}</h2>
+              <h3 className="text-h3 w-full">Stylist: {result.stylist_name}</h3>
+              <p className="text-body mt-4">{result.description}</p>
             </article>
             <Button
               customClasses="justify-end"

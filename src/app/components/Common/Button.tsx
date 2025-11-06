@@ -46,14 +46,14 @@ const Button = ({
           {arrowPosition === "left" && (
             <FontAwesomeIcon
               icon={faArrowLeft}
-              className="relative text-primary text-lg text-right pr-1 transition ease-in-out duration-300 translate-x-0 group-hover:-translate-x-2"
+              className={`relative text-primary text-lg text-right pr-1 transition ease-in-out duration-300 translate-x-0 group-hover:-translate-x-2 ${customClasses}`}
             />
           )}
           {text}
           {arrowPosition === "right" && (
             <FontAwesomeIcon
               icon={faArrowRight}
-              className="relative text-primary text-lg text-right pl-1 transition ease-in-out duration-300 translate-x-0 group-hover:translate-x-2"
+              className={`relative text-primary text-lg text-right pl-1 transition ease-in-out duration-300 translate-x-0 group-hover:translate-x-2 ${customClasses}`}
             />
           )}
         </button>

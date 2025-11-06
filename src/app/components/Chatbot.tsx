@@ -53,7 +53,7 @@ const Chatbot = () => {
         <fieldset className="flex flex-wrap basis-full justify-center">
           <label
             htmlFor="chatinput"
-            className="w-full mb-2 ml-3 font-medium text-body-primary dark:text-secondary"
+            className="w-full mb-2 ml-3 font-medium text-body-primary text-body dark:text-white-200"
           >
             Describe the hair style you're looking for:
           </label>

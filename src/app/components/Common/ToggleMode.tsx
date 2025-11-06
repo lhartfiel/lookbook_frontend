@@ -14,13 +14,13 @@ const ToggleMode = ({
       {showDarkMode ? (
         <FontAwesomeIcon
           onClick={handleToggle}
-          className="text-4xl"
+          className="text-4xl cursor-pointer"
           icon={faToggleOn}
         ></FontAwesomeIcon>
       ) : (
         <FontAwesomeIcon
           onClick={handleToggle}
-          className="text-4xl"
+          className="text-4xl cursor-pointer"
           icon={faToggleOff}
         ></FontAwesomeIcon>
       )}
