@@ -7,7 +7,8 @@ import { Button } from "./Common/Button";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useStyleStore } from "../state/store";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMaximize } from "@fortawesome/free-solid-svg-icons";
 export interface ImageType {
   id: number;
   image: string;
@@ -50,6 +51,7 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
   const [showDisplay, setShowDisplay] = useState(false);
   const [isImageLoading, setIsImageLoading] = useState(true);
   const [activeImages, setActiveImages] = useState({ images: [], title: "" });
+  const [photoHoveredId, setPhotoHoveredId] = useState<number | null>(null);
 
   if (!results || results.length === 0) {
     return <div>No styles found</div>;
@@ -63,6 +65,10 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
     e.preventDefault();
     setSelectedStyle(result);
     router.push(`/style/${result.id}`);
+  };
+
+  const hoverImage = (id: number | null) => {
+    setPhotoHoveredId(id);
   };
 
   return (
@@ -85,7 +91,12 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
             key={result.id}
             className="relative flex flex-col style items-start w-full drop-shadow-xl dark:drop-shadow-2xl hover:3xl bg-white rounded-xl"
           >
-            <button className="relative h-full w-full aspect-[2/3] md:max-h-[460px] lg:max-h-[320px] max-h-full">
+            <button
+              onMouseEnter={() => hoverImage(result.id)}
+              onMouseLeave={() => hoverImage(null)}
+              onClick={() => toggleGallery(result.style_image, result.title)}
+              className="relative h-full w-full cursor-pointer aspect-[2/3] md:max-h-[460px] lg:max-h-[320px] max-h-full before:transition before:duration-500 hover:before:bg-gray-900 hover:before:top-0 hover:before:absolute hover:before:bottom-0 hover:before:left-0 hover:before:right-0 hover:before:z-20 hover:before:opacity-75"
+            >
               {isImageLoading && (
                 <div className="absolute inset-0">
                   <Skeleton
@@ -96,8 +107,22 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
                   />
                 </div>
               )}
+              <span
+                className={`transition duration-500 absolute z-20 left-0 right-0 top-[50%] translate-y-[-50%] mx-auto  ${
+                  photoHoveredId === result.id
+                    ? "opacity-100 scale-100"
+                    : "opacity-0 scale-0"
+                }`}
+              >
+                <p className="text-body text-white mb-3 font-medium">
+                  Click photo to see style gallery
+                </p>
+                <FontAwesomeIcon
+                  className="text-[72px] text-white opacity-75 "
+                  icon={faMaximize}
+                />
+              </span>
               <Image
-                onClick={() => toggleGallery(result.style_image, result.title)}
                 fill
                 className="cursor-pointer rounded-tl-xl rounded-tr-xl object-cover object-top"
                 loading="lazy"
