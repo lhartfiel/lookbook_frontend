@@ -53,7 +53,7 @@ const Chatbot = () => {
         <fieldset className="flex flex-wrap basis-full justify-center">
           <label
             htmlFor="chatinput"
-            className="w-full mb-2 ml-3 font-medium text-body-primary"
+            className="w-full mb-2 ml-3 font-medium text-body-primary text-body dark:text-white-200"
           >
             Describe the hair style you're looking for:
           </label>
@@ -61,17 +61,11 @@ const Chatbot = () => {
             ref={textareaRef}
             className="flex-grow bg-white field-sizing-content w-full border-1 rounded-4xl border-zinc-200 shadow-lg py-3 px-4"
             name="chatinput"
-            id="chat-input"
+            id="chatinput"
             placeholder="I'd like a ..."
           />
         </fieldset>
         <Button text="Show me styles" type="submit"></Button>
-        {/* <button
-          type="submit"
-          className="flex bg-primary font-semibold hover:bg-pink-900 cursor-pointer text-white px-4 py-2 rounded-4xl mt-4 self-end mr-0 ml-auto"
-        >
-          Show me styles
-        </button> */}
       </form>
       {mutation.isPending && (
         <div className="mt-6">

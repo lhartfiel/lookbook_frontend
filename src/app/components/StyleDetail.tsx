@@ -27,13 +27,13 @@ const StyleDetail = () => {
       <span className="lg:col-start-3 lg:col-span-2 col-start-2 col-span-3 self-end lg:flex-start">
         <Button
           arrowPosition="left"
-          customClasses="justify-start"
+          customClasses="justify-end lg:justify-start dark:text-green-400"
           type="text"
           text="Back"
           callback={() => router.back()}
         ></Button>
       </span>
-      <h1 className="text-h1 font-bold w-full lg:col-start-3 col-span-full">
+      <h1 className="dark:text-white text-h1 font-bold w-full lg:col-start-3 col-span-full pt-3 pb-2">
         {selectedStyle?.title}
       </h1>
       <div className="lg:col-start-3 lg:col-span-8 col-span-10 col-start-1 flex flex-wrap sm:flex-nowrap shadow-2xl">
