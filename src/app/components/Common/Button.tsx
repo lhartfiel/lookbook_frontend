@@ -28,7 +28,7 @@ const Button = ({
         <button
           onClick={callback}
           type={`${type === "submit" ? "submit" : "button"}`}
-          className="flex items-center group bg-primary font-semibold transition duration-300 ease-in-out hover:bg-primary-dark cursor-pointer text-white px-4 py-2 rounded-4xl mt-4 self-end mr-0 ml-auto"
+          className="flex items-center group bg-primary font-semibold transition duration-300 ease-in-out hover:bg-primary-dark dark:hover:bg-secondary cursor-pointer text-white px-4 py-2 rounded-4xl mt-4 self-end mr-0 ml-auto"
         >
           {text}
 
