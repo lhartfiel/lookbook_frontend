@@ -3,9 +3,8 @@ import { TypeAnimation } from "react-type-animation";
 
 const StyleTextResponse = () => {
   const { aiResponse, aiResponseInitialized } = useStyleStore();
-  console.log("aire", aiResponseInitialized);
   return (
-    <>
+    <div className="w-full mx-auto max-w-[1024px]">
       {aiResponseInitialized ? (
         <TypeAnimation
           sequence={[`${aiResponse}`, 1000]}
@@ -18,7 +17,7 @@ const StyleTextResponse = () => {
           {aiResponse}
         </p>
       )}
-    </>
+    </div>
   );
 };
 

@@ -33,7 +33,7 @@ const StyleDetail = () => {
           callback={() => router.back()}
         ></Button>
       </span>
-      <h1 className="dark:text-white text-h1 font-bold w-full lg:col-start-3 col-span-full pt-3 pb-2">
+      <h1 className="dark:text-white text-h1 font-bold w-full lg:col-start-3 col-span-full pt-3 pb-2 text-body-primary">
         {selectedStyle?.title}
       </h1>
       <div className="lg:col-start-3 lg:col-span-8 col-span-10 col-start-1 flex flex-wrap sm:flex-nowrap shadow-2xl">
@@ -43,7 +43,7 @@ const StyleDetail = () => {
             onMouseEnter={hoverImage}
             onMouseLeave={hoverImage}
             onClick={toggleGallery}
-            className="w-full relative cursor-pointer before:transition before:duration-500 hover:before:bg-gray-800 hover:before:top-0 hover:before:absolute hover:before:bottom-0 hover:before:left-0 hover:before:right-0 hover:before:z-20 hover:before:opacity-75"
+            className="w-full relative cursor-pointer before:transition before:duration-500 hover:before:bg-gray-900 hover:before:top-0 hover:before:absolute hover:before:bottom-0 hover:before:left-0 hover:before:right-0 hover:before:z-20 hover:before:opacity-75"
           >
             {selectedStyle?.style_image[0].image && (
               <>

@@ -41,19 +41,19 @@ const Button = ({
       {type === "text" && (
         <button
           onClick={callback}
-          className={`group flex items-center cursor-pointer text-primary w-full font-bold px-3 py-4 transition duration-700 decoration-transparent hover:decoration-primary underline underline-offset-0 hover:underline-offset-2 ${customClasses}`}
+          className={`group flex items-center cursor-pointer text-primary-dark w-full font-bold px-3 py-4 transition duration-700 decoration-transparent hover:decoration-primary-dark underline underline-offset-0 hover:underline-offset-2 ${customClasses}`}
         >
           {arrowPosition === "left" && (
             <FontAwesomeIcon
               icon={faArrowLeft}
-              className={`relative text-primary text-lg text-right pr-1 transition ease-in-out duration-300 translate-x-0 group-hover:-translate-x-2 ${customClasses}`}
+              className={`relative text-primary-dark text-lg text-right pr-1 transition ease-in-out duration-300 translate-x-0 group-hover:-translate-x-2 ${customClasses}`}
             />
           )}
           {text}
           {arrowPosition === "right" && (
             <FontAwesomeIcon
               icon={faArrowRight}
-              className={`relative text-primary text-lg text-right pl-1 transition ease-in-out duration-300 translate-x-0 group-hover:translate-x-2 ${customClasses}`}
+              className={`relative text-primary-dark text-lg text-right pl-1 transition ease-in-out duration-300 translate-x-0 group-hover:translate-x-2 ${customClasses}`}
             />
           )}
         </button>

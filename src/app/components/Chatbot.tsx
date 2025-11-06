@@ -31,7 +31,6 @@ const Chatbot = () => {
 
   useEffect(() => {
     if (!mutation.isPending && mutation?.data) {
-      console.log("call with new results");
       updateResults(mutation?.data.results);
       updateAiResponse(mutation?.data.aiResponse);
     }
@@ -43,11 +42,10 @@ const Chatbot = () => {
 
   if (mutation.error)
     return <div>An error has occurred: {mutation.error.message}</div>;
-  console.log("data", mutation.data);
   return (
     <>
       <form
-        className="flex flex-wrap items-center mx-auto self-center justify-center w-full max-w-[480px]"
+        className="flex flex-wrap items-center mx-auto self-center justify-center w-full md:max-w-[600px] lg:max-w-[480px]"
         onSubmit={(e) => handleSubmit(e)}
       >
         <fieldset className="flex flex-wrap basis-full justify-center">
@@ -68,7 +66,7 @@ const Chatbot = () => {
         <Button text="Show me styles" type="submit"></Button>
       </form>
       {mutation.isPending && (
-        <div className="mt-6">
+        <div className="mt-6 w-full mx-auto max-w-[1024px]">
           {Array.from({ length: 6 }, (_, idx) => {
             return (
               <Skeleton
@@ -89,7 +87,9 @@ const Chatbot = () => {
           <StyleResults loading={mutation.isPending} />
         </>
       ) : (
-        <p className="mt-6">{aiResponse}</p>
+        <p className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-[1024px]">
+          {aiResponse}
+        </p>
       )}
     </>
   );
