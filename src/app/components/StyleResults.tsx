@@ -56,7 +56,7 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
   if (!results || results.length === 0) {
     return <div>No styles found</div>;
   }
-  const toggleGallery = (images: ImageType[], title: string) => {
+  const toggleGallery = (images: ImageType[] | [], title: string) => {
     setActiveImages({ images, title });
     setShowDisplay((prev) => !prev);
   };

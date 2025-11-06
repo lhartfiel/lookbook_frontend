@@ -11,19 +11,12 @@ const ToggleMode = ({
 }) => {
   return (
     <>
-      {showDarkMode ? (
+      <button onClick={handleToggle}>
         <FontAwesomeIcon
-          onClick={handleToggle}
           className="text-4xl dark:text-secondary cursor-pointer"
-          icon={faToggleOn}
+          icon={showDarkMode ? faToggleOn : faToggleOff}
         ></FontAwesomeIcon>
-      ) : (
-        <FontAwesomeIcon
-          onClick={handleToggle}
-          className="text-4xl dark:text-secondary cursor-pointer"
-          icon={faToggleOff}
-        ></FontAwesomeIcon>
-      )}
+      </button>
     </>
   );
 };
