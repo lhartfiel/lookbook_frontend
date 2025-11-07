@@ -1,17 +1,8 @@
 "use client";
 import Image from "next/image";
 import { Chatbot } from "./components/Chatbot";
-import { ToggleMode } from "./components/Common/ToggleMode";
-import { useStyleStore } from "./state/store";
 
 export default function Home() {
-  const { updateThemeMode, themeModeIsDark } = useStyleStore();
-
-  // const handleToggle = () => {
-  //   updateThemeMode(!themeModeIsDark);
-  //   localStorage.setItem("dark-theme", `${!themeModeIsDark}`);
-  // };
-
   return (
     <>
       <div className="col-span-full lg:col-span-10 lg:col-start-2 xl:col-span-8 xl:col-start-3 flex flex-col">
