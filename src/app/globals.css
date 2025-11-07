@@ -5,6 +5,7 @@
 :root {
   /* color palette */
   --white-200: #d5e5e5;
+  --color-yellow-300: #ffe778;
   --color-blue-200: #e2eff3;
   --color-blue-600: #32798f;
   --color-blue-700: #214f5d;
@@ -22,7 +23,8 @@
   --color-primary: var(--color-blue-600);
   --color-primary-dark: var(--color-blue-700);
   --color-secondary: var(--color-green-400);
-  --color-white-200: var(--white-200);
+  --color-light: var(--white-200);
+  --color-caution: var(--color-yellow-300);
 
   --text-h1: 32px;
   --text-h2: 24px;

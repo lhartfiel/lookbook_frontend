@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useStyleStore } from "../state/store";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,6 +15,13 @@ const StyleDetail = () => {
   const [photoIsHovered, setPhotoIsHovered] = useState(false);
   const { selectedStyle } = useStyleStore();
 
+  useEffect(() => {
+    // Return user to homepage if they refresh the page
+    if (selectedStyle === null) {
+      router.push("/");
+    }
+  }, []);
+
   const toggleGallery = () => {
     setShowGallery((prev) => !prev);
   };
@@ -27,7 +34,7 @@ const StyleDetail = () => {
       <span className="lg:col-start-3 lg:col-span-2 col-start-2 col-span-3 self-end lg:flex-start">
         <Button
           arrowPosition="left"
-          customClasses="justify-end lg:justify-start dark:text-green-400"
+          customClasses="justify-end lg:justify-start dark:text-green-400 py-0"
           type="text"
           text="Back"
           callback={() => router.back()}
@@ -45,7 +52,7 @@ const StyleDetail = () => {
             onClick={toggleGallery}
             className="w-full relative cursor-pointer before:transition before:duration-500 hover:before:bg-gray-900 hover:before:top-0 hover:before:absolute hover:before:bottom-0 hover:before:left-0 hover:before:right-0 hover:before:z-20 hover:before:opacity-75"
           >
-            {selectedStyle?.style_image[0].image && (
+            {selectedStyle?.style_image[0].image ? (
               <>
                 <span
                   className={`transition duration-500 absolute z-20 left-0 right-0 top-[50%] translate-y-[-50%] mx-auto  ${
@@ -70,6 +77,10 @@ const StyleDetail = () => {
                   alt={selectedStyle?.style_image[0].image_alt || ""}
                 />
               </>
+            ) : (
+              <p className="text-primary-dark text-body">
+                Sorry, no image could be found
+              </p>
             )}
           </button>
         </div>

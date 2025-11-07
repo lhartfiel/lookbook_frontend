@@ -9,6 +9,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useStyleStore } from "../state/store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMaximize } from "@fortawesome/free-solid-svg-icons";
+
 export interface ImageType {
   id: number;
   image: string;
@@ -50,13 +51,16 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
   const router = useRouter();
   const [showDisplay, setShowDisplay] = useState(false);
   const [isImageLoading, setIsImageLoading] = useState(true);
-  const [activeImages, setActiveImages] = useState({ images: [], title: "" });
+  const [activeImages, setActiveImages] = useState<{
+    images: ImageType[] | [];
+    title: string;
+  }>({ images: [], title: "" });
   const [photoHoveredId, setPhotoHoveredId] = useState<number | null>(null);
 
   if (!results || results.length === 0) {
     return <div>No styles found</div>;
   }
-  const toggleGallery = (images: ImageType[], title: string) => {
+  const toggleGallery = (images: ImageType[] | [], title: string) => {
     setActiveImages({ images, title });
     setShowDisplay((prev) => !prev);
   };

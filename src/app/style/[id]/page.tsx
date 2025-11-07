@@ -1,9 +1,7 @@
 import { StyleDetail } from "@/app/components/StyleDetail";
 
-const StylePage = async ({ params }) => {
-  console.log("params", params);
-  const { result } = await params;
-  return <StyleDetail result={result} />;
+const StylePage = async () => {
+  return <StyleDetail />;
 };
 
 export default StylePage;
