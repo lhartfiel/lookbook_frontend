@@ -13,7 +13,7 @@ const Button = ({
   text,
   callback,
 }: {
-  arrowPosition?: string;
+  arrowPosition?: ArrowPosition;
   customClasses?: string;
   type: ButtonType;
   text: string;

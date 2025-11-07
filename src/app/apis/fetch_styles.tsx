@@ -16,7 +16,6 @@ export const fetchStyles = async (queryText: string) => {
     }
 
     const data = await response.json();
-    console.log("dataRes", data);
     return {
       count: data.count,
       results: data.results || [],
