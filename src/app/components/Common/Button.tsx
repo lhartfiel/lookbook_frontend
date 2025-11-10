@@ -4,18 +4,18 @@ import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 type ButtonType = "text" | "button" | "submit";
 type ArrowPosition = "right" | "left";
 
-type CallbackFunction = (...args: any[]) => void;
+type CallbackFunction = () => void;
 
 const Button = ({
   arrowPosition,
-  children,
+  childItems,
   customClasses,
   type,
   text,
   callback,
 }: {
   arrowPosition?: ArrowPosition;
-  children?: React.ReactNode;
+  childItems?: React.ReactNode;
   customClasses?: string;
   type: ButtonType;
   text: string;
@@ -48,7 +48,7 @@ const Button = ({
               className={`relative text-primary-dark text-lg text-right pr-1 transition ease-in-out duration-300 translate-x-0 group-hover:-translate-x-2 ${customClasses}`}
             />
           )}
-          {children}
+          {childItems}
           {text}
           {arrowPosition === "right" && (
             <FontAwesomeIcon
