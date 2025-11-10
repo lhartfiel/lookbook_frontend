@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <BaseLayout children={children} />
+      <BaseLayout childItems={children} />
     </>
   );
 }

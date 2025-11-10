@@ -53,7 +53,7 @@ const Chatbot = () => {
             htmlFor="chatinput"
             className="w-full mb-2 ml-3 font-medium text-body-primary text-body dark:text-light"
           >
-            Describe the hair style you're looking for:
+            {`Describe the hair style you're looking for:`}
           </label>
           <textarea
             ref={textareaRef}

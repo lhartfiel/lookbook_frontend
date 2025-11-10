@@ -15,7 +15,7 @@ const barlow = Barlow({
   weight: ["400", "500", "600", "700"],
 });
 
-const BaseLayout = ({ children }: { children: React.ReactNode }) => {
+const BaseLayout = ({ childItems }: { childItems: React.ReactNode }) => {
   const currentPath = usePathname();
   const router = useRouter();
   const { themeModeIsDark, updateThemeMode } = useStyleStore();
@@ -63,7 +63,7 @@ const BaseLayout = ({ children }: { children: React.ReactNode }) => {
                 <p className="ml-2 font-bold dark:text-secondary">Dark Mode</p>
               </span>
             </div>
-            {children}
+            {childItems}
           </main>
           <Footer />
         </Providers>
