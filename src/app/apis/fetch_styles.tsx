@@ -3,7 +3,7 @@ const url =
 
 export const fetchStyles = async (queryText: string) => {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${url}styles/search/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
