@@ -4,7 +4,9 @@ import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 type ButtonType = "text" | "button" | "submit";
 type ArrowPosition = "right" | "left";
 
-type CallbackFunction = () => void;
+type CallbackFunction =
+  | ((event: React.MouseEvent<HTMLButtonElement>) => void)
+  | (() => void);
 
 const Button = ({
   arrowPosition,

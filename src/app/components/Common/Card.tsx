@@ -113,7 +113,7 @@ const Card = ({ result }: { result: ResultsType }) => {
             customClasses="justify-end items-end"
             text="See Style Details"
             type="text"
-            callback={(e) => goToStyle(e, result)}
+            callback={(e: React.MouseEvent) => goToStyle(e, result)}
           ></Button>
         </article>
       </div>
