@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
         port: "8000",
         search: "",
       },
+      {
+        protocol: "https",
+        hostname: "lookbook-lhartfiel.pythonanywhere.com",
+        pathname: "/media/**",
+      },
     ],
     formats: ["image/webp", "image/avif"],
     minimumCacheTTL: 60,
