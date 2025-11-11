@@ -1,36 +1,244 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lookbook Frontend
+
+A Next.js-based frontend application for browsing and searching hairstyles using AI-powered natural language search.
+
+## Features
+
+- 🔍 **AI-Powered Search**: Natural language search using vector embeddings and OpenAI
+- 💇 **Style Gallery**: Browse hairstyles with detailed information and multiple angles
+- ❤️ **Favorites**: Save and manage your favorite hairstyles
+- 🎨 **Responsive Design**: Fully responsive layout for desktop, tablet, and mobile
+- 🌙 **Dark Mode**: Toggle between light and dark themes
+- ♿ **Accessible**: Built with accessibility best practices
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4
+- **State Management**: Zustand
+- **Data Fetching**: TanStack Query (React Query)
+- **Icons**: Font Awesome
+- **Image Lightbox**: Yet Another React Lightbox
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20 or higher
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd lookbook-frontend
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Create a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000/api/
+```
+
+### Development
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The page auto-updates as you edit files. Development uses Turbopack for faster builds.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Building for Production
 
-## Learn More
+Build the application:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Start the production server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm start
+```
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+lookbook-frontend/
+├── src/
+│   └── app/
+│       ├── apis/              # API service layer
+│       ├── components/        # React components
+│       │   ├── Common/        # Reusable UI components
+│       │   ├── Chatbot.tsx    # Search interface
+│       │   ├── StyleResults.tsx
+│       │   ├── StyleDetail.tsx
+│       │   └── Favorites.tsx
+│       ├── state/             # Zustand store
+│       ├── favorites/         # Favorites page
+│       ├── style/[id]/        # Dynamic style detail page
+│       ├── layout.tsx         # Root layout
+│       ├── page.tsx           # Home page
+│       └── globals.css        # Global styles
+├── public/                    # Static assets
+├── next.config.ts             # Next.js configuration
+├── tailwind.config.ts         # Tailwind CSS configuration
+└── netlify.toml              # Netlify deployment config
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment to Netlify
+
+### Prerequisites
+
+- A Netlify account
+- Backend API deployed (e.g., on PythonAnywhere)
+
+### Deployment Steps
+
+1. **Push your code to GitHub/GitLab/Bitbucket**
+
+2. **Connect to Netlify**:
+
+   - Go to [Netlify](https://app.netlify.com/)
+   - Click "Add new site" → "Import an existing project"
+   - Connect your Git repository
+
+3. **Configure Build Settings**:
+
+   - **Base directory**: `lookbook-frontend`
+   - **Build command**: `npm run build`
+   - **Publish directory**: `.next`
+
+4. **Set Environment Variables**:
+   Go to Site settings → Environment variables and add:
+
+   ```
+   NEXT_PUBLIC_API_URL=https://your-backend-url.com/api/
+   ```
+
+5. **Deploy**:
+   - Click "Deploy site"
+   - Netlify will automatically build and deploy your site
+   - Future commits to your main branch will trigger automatic deployments
+
+### Configuration Files
+
+#### `netlify.toml`
+
+```toml
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+```
+
+#### `next.config.ts`
+
+Key configurations for deployment:
+
+- `unoptimized: true` - Disables Next.js image optimization for static hosting
+- `remotePatterns` - Allows images from your backend domain
+
+### Post-Deployment
+
+1. **Update Backend CORS**:
+   Add your Netlify domain to Django's `CORS_ALLOWED_ORIGINS`:
+
+   ```python
+   CORS_ALLOWED_ORIGINS = [
+       "https://your-site.netlify.app"
+   ]
+   ```
+
+2. **Test the Deployment**:
+   - Search functionality
+   - Image loading
+   - Favorites persistence
+   - Dark mode toggle
+
+### Troubleshooting
+
+**Images not loading:**
+
+- Verify `NEXT_PUBLIC_API_URL` is set correctly
+- Check that backend CORS includes your Netlify domain
+- Ensure backend static files are configured properly
+
+**API requests failing:**
+
+- Check environment variables in Netlify dashboard
+- Verify backend is accessible from Netlify
+- Check browser console for CORS errors
+
+**Build failures:**
+
+- Review build logs in Netlify dashboard
+- Ensure all dependencies are in `package.json`
+- Check for TypeScript errors locally first
+
+## Environment Variables
+
+| Variable              | Description          | Example                        |
+| --------------------- | -------------------- | ------------------------------ |
+| `NEXT_PUBLIC_API_URL` | Backend API base URL | `https://api.example.com/api/` |
+
+## Key Features Implementation
+
+### Search
+
+- Natural language queries processed by backend AI
+- Results displayed in responsive grid
+- AI-generated response explains the results
+
+### Favorites
+
+- Stored in browser localStorage
+- Synced with Zustand store
+- Persists across sessions
+- Dedicated favorites page
+
+### Style Details
+
+- Full-screen image gallery
+- Multiple angle views
+- Stylist information
+- Hair characteristics (length, texture, thickness, maintenance)
+- Tags for additional attributes
+
+### Responsive Design
+
+- Mobile-first approach
+- Breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px)
+- Touch-friendly interface
+- Optimized images for different screen sizes
+
+## Contributing
+
+1. Create a feature branch
+2. Make your changes
+3. Test thoroughly
+4. Submit a pull request
+
+## License
+
+[Your License Here]
+
+## Support
+
+For issues or questions, please open an issue in the repository.
