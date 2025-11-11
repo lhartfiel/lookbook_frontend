@@ -74,7 +74,7 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
             text={`Favorites (${favoritedLength})`}
             callback={goToFavorites}
             customClasses="w-auto justify-end dark:text-secondary dark:hover:decoration-secondary"
-            children={
+            childItems={
               <FontAwesomeIcon
                 className="text-secondary text-2xl mr-2"
                 icon={faHeart}
