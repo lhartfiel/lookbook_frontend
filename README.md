@@ -81,23 +81,42 @@ npm start
 lookbook-frontend/
 ├── src/
 │   └── app/
-│       ├── apis/              # API service layer
-│       ├── components/        # React components
-│       │   ├── Common/        # Reusable UI components
-│       │   ├── Chatbot.tsx    # Search interface
-│       │   ├── StyleResults.tsx
-│       │   ├── StyleDetail.tsx
-│       │   └── Favorites.tsx
-│       ├── state/             # Zustand store
-│       ├── favorites/         # Favorites page
-│       ├── style/[id]/        # Dynamic style detail page
-│       ├── layout.tsx         # Root layout
-│       ├── page.tsx           # Home page
-│       └── globals.css        # Global styles
-├── public/                    # Static assets
-├── next.config.ts             # Next.js configuration
-├── tailwind.config.ts         # Tailwind CSS configuration
-└── netlify.toml              # Netlify deployment config
+│       ├── apis/                      # API service layer
+│       │   ├── fetch_styles.tsx      # Search API calls
+│       │   └── fetch_favorites.tsx   # Favorites API calls
+│       ├── components/               # React components
+│       │   ├── Common/               # Reusable UI components
+│       │   │   ├── Button.tsx        # Button component
+│       │   │   ├── Card.tsx          # Style card component
+│       │   │   ├── Footer.tsx        # Footer component
+│       │   │   ├── Tag.tsx           # Tag display component
+│       │   │   └── ToggleMode.tsx    # Dark mode toggle
+│       │   ├── BaseLayout.tsx        # Base layout wrapper
+│       │   ├── Chatbot.tsx           # Search interface
+│       │   ├── Favorites.tsx         # Favorites display
+│       │   ├── FavoritesLoader.tsx   # Favorites data loader
+│       │   ├── StyleResults.tsx      # Search results grid
+│       │   ├── StyleDetail.tsx       # Individual style view
+│       │   ├── StyleGallery.tsx      # Image lightbox gallery
+│       │   └── StyleTextResponse.tsx # AI response display
+│       ├── state/                    # Zustand store
+│       │   └── store.ts              # Global state management
+│       ├── favorites/                # Favorites page route
+│       │   └── page.tsx
+│       ├── style/[id]/               # Dynamic style detail route
+│       │   └── page.tsx
+│       ├── favicons/                 # Favicon assets
+│       ├── layout.tsx                # Root layout
+│       ├── page.tsx                  # Home page
+│       ├── providers.tsx             # React Query provider
+│       └── globals.css               # Global styles
+├── public/                           # Static assets
+│   └── lookbook_logo.svg            # Logo
+├── next.config.ts                    # Next.js configuration
+├── tailwind.config.ts                # Tailwind CSS configuration
+├── postcss.config.mjs                # PostCSS configuration
+├── package.json                      # Dependencies
+└── netlify.toml                      # Netlify deployment config
 ```
 
 ## Deployment to Netlify
