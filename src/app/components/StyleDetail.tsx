@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMaximize } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import { Button } from "./Common/Button";
 import { BackButton } from "./Common/BackButton";
 import { StyleGallery } from "./StyleGallery";
 import { Tag } from "./Common/Tag";
