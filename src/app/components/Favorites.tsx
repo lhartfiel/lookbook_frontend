@@ -21,8 +21,11 @@ const Favorites = () => {
         </h1>
         {favoritesArray.length > 0 ? (
           favoritesArray.map((fav) => (
-            <div className="col-span-full md:col-span-6 lg:col-span-4">
-              <Card result={fav} key={fav.id} />
+            <div
+              className="col-span-full md:col-span-6 lg:col-span-4"
+              key={fav.id}
+            >
+              <Card result={fav} />
             </div>
           ))
         ) : (
