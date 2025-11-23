@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMaximize } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { Button } from "./Common/Button";
+import { BackButton } from "./Common/BackButton";
 import { StyleGallery } from "./StyleGallery";
 import { Tag } from "./Common/Tag";
 
@@ -31,15 +32,7 @@ const StyleDetail = () => {
   };
   return (
     <>
-      <span className="lg:col-start-3 lg:col-span-2 col-start-2 col-span-3 self-end lg:flex-start">
-        <Button
-          arrowPosition="left"
-          customClasses="justify-end lg:justify-start dark:text-green-400 py-0"
-          type="text"
-          text="Back"
-          callback={() => router.back()}
-        ></Button>
-      </span>
+      <BackButton />
       <h1 className="dark:text-white text-h1 font-bold w-full lg:col-start-3 col-span-full pt-3 pb-2 text-body-primary">
         {selectedStyle?.title}
       </h1>

@@ -47,6 +47,7 @@ const BaseLayout = ({ childItems }: { childItems: React.ReactNode }) => {
               {currentPath !== "/" && (
                 <button className="cursor-pointer" onClick={goToHome}>
                   <Image
+                    className="max-w-[120px] md:max-w-full"
                     src="/logo_icon.svg"
                     alt="Lookbook logo icon"
                     width="130"
@@ -55,7 +56,9 @@ const BaseLayout = ({ childItems }: { childItems: React.ReactNode }) => {
                 </button>
               )}
               <span className="flex flex-nowrap items-center ml-auto">
-                <p className="mr-2 font-bold dark:text-secondary">Light Mode</p>
+                <p className="mr-2 font-bold dark:text-secondary text-right">
+                  Light Mode
+                </p>
                 <ToggleMode
                   handleToggle={handleToggle}
                   showDarkMode={themeModeIsDark}
