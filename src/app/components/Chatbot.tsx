@@ -25,7 +25,18 @@ const Chatbot = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const query = textareaRef.current?.value || "";
+    const query = textareaRef.current?.value?.trim() || "";
+
+    // Basic validation
+    if (!query) {
+      return; // Don't submit empty queries
+    }
+
+    if (query.length > 500) {
+      alert("Query is too long. Please keep it under 500 characters.");
+      return;
+    }
+
     mutation.mutate(query);
     updateResponseInitialized(true);
     updateAiResponse("");
@@ -61,6 +72,7 @@ const Chatbot = () => {
             name="chatinput"
             id="chatinput"
             placeholder="I'd like a ..."
+            maxLength={500}
           />
         </fieldset>
         <Button text="Show me styles" type="submit"></Button>
