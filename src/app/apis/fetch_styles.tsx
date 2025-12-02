@@ -1,9 +1,11 @@
-const url =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/styles/search/";
+const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/";
 
+console.log("Base URL:", baseUrl);
 export const fetchStyles = async (queryText: string) => {
   try {
-    const response = await fetch(`${url}styles/search/`, {
+    const fullUrl = `${baseUrl}styles/search/`;
+    console.log("Full URL:", fullUrl);
+    const response = await fetch(fullUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

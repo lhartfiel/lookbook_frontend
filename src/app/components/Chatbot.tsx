@@ -43,7 +43,9 @@ const Chatbot = () => {
   };
 
   useEffect(() => {
+    updateResponseInitialized(false);
     if (!mutation.isPending && mutation?.data) {
+      updateResponseInitialized(true);
       updateResults(mutation?.data.results);
       updateAiResponse(mutation?.data.aiResponse);
     }
