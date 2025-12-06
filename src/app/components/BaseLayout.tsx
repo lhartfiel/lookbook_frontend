@@ -8,6 +8,7 @@ import { Barlow } from "next/font/google";
 import { Footer } from "./Common/Footer";
 import { ToggleMode } from "./Common/ToggleMode";
 import { FavoritesLoader } from "./FavoritesLoader";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const barlow = Barlow({
   variable: "--font-barlow",
@@ -37,6 +38,7 @@ const BaseLayout = ({ childItems }: { childItems: React.ReactNode }) => {
 
   return (
     <html lang="en" className={`${themeModeIsDark ? "dark" : ""}`}>
+      <GoogleAnalytics gaId="G-TG37RCHCK6" />
       <body
         className={`${barlow.className} antialiased bg-blue-200 dark:bg-blue-900 grid grid-cols-4 lg:grid-cols-12 grid-rows-[auto_1fr_auto] lg:gap-4 w-full xl:max-w-[1440px] mx-auto min-h-screen`}
       >
