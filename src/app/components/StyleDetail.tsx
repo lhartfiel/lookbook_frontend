@@ -11,8 +11,8 @@ import { Tag } from "./Common/Tag";
 
 const StyleDetail = () => {
   const router = useRouter();
-  const [showGallery, setShowGallery] = useState(false);
-  const [photoIsHovered, setPhotoIsHovered] = useState(false);
+  const [showGallery, setShowGallery] = useState<boolean>(false);
+  const [photoIsHovered, setPhotoIsHovered] = useState<boolean>(false);
   const { selectedStyle } = useStyleStore();
 
   useEffect(() => {
@@ -22,11 +22,11 @@ const StyleDetail = () => {
     }
   }, []);
 
-  const toggleGallery = () => {
+  const toggleGallery = (): void => {
     setShowGallery((prev) => !prev);
   };
 
-  const hoverImage = () => {
+  const hoverImage = (): void => {
     setPhotoIsHovered((prev) => !prev);
   };
   return (
@@ -93,7 +93,7 @@ const StyleDetail = () => {
           </span>
           {selectedStyle?.tags && selectedStyle?.tags.length > 0 && (
             <div className="mt-5">
-              {selectedStyle.tags.map((tag) => (
+              {selectedStyle?.tags.map((tag) => (
                 <Tag tagName={tag} key={tag} />
               ))}
             </div>
@@ -102,7 +102,7 @@ const StyleDetail = () => {
       </div>
       {showGallery && (
         <StyleGallery
-          handleLightbox={() => toggleGallery()}
+          handleLightbox={toggleGallery}
           showLightbox={showGallery}
           imageInfo={{
             images: selectedStyle?.style_image ?? [],

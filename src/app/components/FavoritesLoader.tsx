@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useStyleStore } from "../state/store";
 import { fetchFavorites } from "../apis/fetch_favorites";
 
-const FavoritesLoader = () => {
+const FavoritesLoader = (): null => {
   const { favoriteIds, updateFavoriteIds, updateFavorites, favorites } =
     useStyleStore();
   const prevFavoriteIdsRef = useRef<string[]>([]);
@@ -26,7 +26,7 @@ const FavoritesLoader = () => {
 
   useEffect(() => {
     // Update favorites in store when data is fetched
-    if (data?.results && Array.isArray(data.results)) {
+    if (data && "results" in data && Array.isArray(data.results)) {
       updateFavorites(data.results);
     } else if (Array.isArray(data)) {
       // In case the API returns an array directly

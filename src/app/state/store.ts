@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { ResultsType } from "../components/StyleResults";
+import { ResultsType } from "../types";
 
 interface StyleStore {
   aiResponse: string;

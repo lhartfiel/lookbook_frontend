@@ -3,7 +3,10 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 
-export function Providers({ children }: { children: React.ReactNode }) {
+interface ProvidersProps {
+  children: React.ReactNode;
+}
+export function Providers({ children }: ProvidersProps) {
   // Create QueryClient inside the component to avoid SSR issues
   const [queryClient] = useState(() => new QueryClient());
 

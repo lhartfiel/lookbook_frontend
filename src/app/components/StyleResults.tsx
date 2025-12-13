@@ -8,31 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Card } from "./Common/Card";
 
-export interface ImageType {
-  id: number;
-  image: string;
-  image_alt: string;
-  style: number;
-  type: string;
-  view: string;
-}
-
-export interface ResultsType {
-  client_permission: boolean;
-  created_at: string;
-  description: string;
-  id: number;
-  length: string;
-  maintenance: string;
-  style_image: ImageType[];
-  stylist_name: string;
-  tags: string[];
-  texture: string;
-  thickness: string;
-  title: string;
-  updated_at: string;
-}
-
 export default function myImageLoader() {
   return (
     <Skeleton
@@ -44,13 +19,17 @@ export default function myImageLoader() {
   );
 }
 
-const StyleResults = ({ loading }: { loading: boolean }) => {
+interface StyleResultsProps {
+  loading: boolean;
+}
+
+const StyleResults = ({ loading }: StyleResultsProps) => {
   const { results, favoriteIds } = useStyleStore();
   const router = useRouter();
 
   // Calculate favorites count from favoriteIds
   const favoritedLength = favoriteIds.length;
-  const goToFavorites = () => {
+  const goToFavorites = (): void => {
     router.push("/favorites");
   };
 

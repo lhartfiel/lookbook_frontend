@@ -16,23 +16,26 @@ const barlow = Barlow({
   weight: ["400", "500", "600", "700"],
 });
 
-const BaseLayout = ({ childItems }: { childItems: React.ReactNode }) => {
+interface BaseLayoutProps {
+  childItems: React.ReactNode;
+}
+const BaseLayout = ({ childItems }: BaseLayoutProps) => {
   const currentPath = usePathname();
   const router = useRouter();
   const { themeModeIsDark, updateThemeMode } = useStyleStore();
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("dark-theme");
+    const savedTheme: string | null = localStorage.getItem("dark-theme");
     const isDark = savedTheme === "true";
-    updateThemeMode(Boolean(isDark));
+    updateThemeMode(isDark);
   }, [updateThemeMode]);
 
-  const handleToggle = () => {
+  const handleToggle = (): void => {
     updateThemeMode(!themeModeIsDark);
     localStorage.setItem("dark-theme", `${!themeModeIsDark}`);
   };
 
-  const goToHome = () => {
+  const goToHome = (): void => {
     router.push("/");
   };
 

@@ -1,7 +1,17 @@
+import { ResultsType } from "../types";
 const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/";
 
-console.log("Base URL:", baseUrl);
-export const fetchStyles = async (queryText: string) => {
+interface FetchStylesResponse {
+  count: number;
+  results: ResultsType[];
+  aiResponse: string;
+  next: string | null;
+  previous: string | null;
+}
+
+export const fetchStyles = async (
+  queryText: string
+): Promise<FetchStylesResponse> => {
   try {
     const fullUrl = `${baseUrl}styles/search/`;
     console.log("Full URL:", fullUrl);

@@ -1,6 +1,13 @@
+import { ResultsType } from "../types";
 const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/";
 
-export const fetchFavorites = async (ids: string) => {
+interface FetchFavoritesResponse {
+  results: ResultsType[];
+}
+
+export const fetchFavorites = async (
+  ids: string
+): Promise<FetchFavoritesResponse | ResultsType[]> => {
   try {
     const response = await fetch(`${url}favorites/?ids=${ids}`);
     const results = await response.json();
