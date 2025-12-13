@@ -6,33 +6,40 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMaximize, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { Button } from "./Button";
-import { ImageType, ResultsType } from "../StyleResults";
 import { useStyleStore } from "@/app/state/store";
 import { useRouter } from "next/navigation";
 import { StyleGallery } from "../StyleGallery";
+import { ImageInfo, ImageType, ResultsType } from "@/app/types";
 
-const Card = ({ result }: { result: ResultsType }) => {
+interface CardProps {
+  result: ResultsType;
+}
+
+const Card = ({ result }: CardProps) => {
   const router = useRouter();
-  const [isImageLoading, setIsImageLoading] = useState(true);
-  const [showDisplay, setShowDisplay] = useState(false);
-  const [activeImages, setActiveImages] = useState<{
-    images: ImageType[] | [];
-    title: string;
-  }>({ images: [], title: "" });
+  const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
+  const [showDisplay, setShowDisplay] = useState<boolean>(false);
+  const [activeImages, setActiveImages] = useState<ImageInfo>({
+    images: [],
+    title: "",
+  });
   const { setSelectedStyle, favoriteIds, updateFavoriteIds } = useStyleStore();
 
-  const toggleGallery = (images: ImageType[] | [], title: string) => {
+  const toggleGallery = (images: ImageType[], title: string): void => {
     setActiveImages({ images, title });
     setShowDisplay((prev) => !prev);
   };
 
-  const goToStyle = (e: React.MouseEvent, result: ResultsType) => {
+  const goToStyle = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    result: ResultsType
+  ): void => {
     e.preventDefault();
     setSelectedStyle(result);
     router.push(`/style/${result.id}`);
   };
 
-  const handleFavoriteStyle = (styleId: number) => {
+  const handleFavoriteStyle = (styleId: number): void => {
     const style = localStorage.getItem("favorited");
     let favoritedStyle = style?.split(",").filter((id) => id !== "") || [];
 
@@ -44,12 +51,12 @@ const Card = ({ result }: { result: ResultsType }) => {
       favoritedStyle.push(styleId.toString());
     }
 
-    const updatedIds = favoritedStyle.join(",");
+    const updatedIds: string = favoritedStyle.join(",");
     updateFavoriteIds(favoritedStyle);
     localStorage.setItem("favorited", updatedIds);
   };
 
-  const isFavorited = favoriteIds.includes(result?.id.toString());
+  const isFavorited: boolean = favoriteIds.includes(result?.id.toString());
 
   return (
     <>
@@ -113,7 +120,9 @@ const Card = ({ result }: { result: ResultsType }) => {
             customClasses="justify-end items-end"
             text="See Style Details"
             type="text"
-            callback={(e: React.MouseEvent) => goToStyle(e, result)}
+            callback={(e: React.MouseEvent<HTMLButtonElement>) =>
+              goToStyle(e, result)
+            }
           ></Button>
         </article>
       </div>

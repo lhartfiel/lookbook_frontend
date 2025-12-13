@@ -7,11 +7,7 @@ import { ImageType } from "./StyleResults";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
-
-interface ImageInfo {
-  images: ImageType[];
-  title: string;
-}
+import { ImageInfo } from "../types";
 
 const StyleGallery = ({
   handleLightbox,

@@ -32,3 +32,11 @@ export interface ResultsType {
   title: string;
   updated_at: string;
 }
+
+/**
+ * Interface for image information used in galleries.
+ */
+export interface ImageInfo {
+  images: ImageType[];
+  title: string;
+}
