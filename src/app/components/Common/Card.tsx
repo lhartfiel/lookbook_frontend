@@ -102,6 +102,7 @@ const Card = ({ result }: { result: ResultsType }) => {
             <h2 className="flex items-start justify-between text-h2 font-bold w-full m-0">
               {result.title}{" "}
               <button
+                aria-label="Click to favorite liked hairstyles"
                 className="justify-center cursor-pointer hover:scale-105"
                 onClick={() => handleFavoriteStyle(result.id)}
               >

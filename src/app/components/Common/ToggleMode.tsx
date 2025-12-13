@@ -18,7 +18,10 @@ const ToggleMode = ({
 }) => {
   return (
     <>
-      <button onClick={handleToggle}>
+      <button
+        onClick={handleToggle}
+        aria-label="Toggle Dark/Light Mode theme colors"
+      >
         <FontAwesomeIcon
           className="text-4xl dark:text-secondary cursor-pointer"
           icon={showDarkMode ? faToggleOn : faToggleOff}
