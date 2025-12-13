@@ -1,3 +1,8 @@
+/**
+ * A footer component that displays the current year and the site name.
+ * @returns A JSX element representing the Footer component with the current year.
+ */
+
 const Footer = () => {
   const date = new Date();
   const year = date.getFullYear();

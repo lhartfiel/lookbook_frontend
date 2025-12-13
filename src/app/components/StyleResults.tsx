@@ -8,30 +8,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Card } from "./Common/Card";
 
-export interface ImageType {
-  id: number;
-  image: string;
-  image_alt: string;
-  style: number;
-  type: string;
-  view: string;
-}
-
-export interface ResultsType {
-  client_permission: boolean;
-  created_at: string;
-  description: string;
-  id: number;
-  length: string;
-  maintenance: string;
-  style_image: ImageType[];
-  stylist_name: string;
-  tags: string[];
-  texture: string;
-  thickness: string;
-  title: string;
-  updated_at: string;
-}
+/**
+ * Helper function that renders a skeleton placeholder for loading images.
+ * @returns A JSX element with a skeleton loader.
+ */
 
 export default function myImageLoader() {
   return (
@@ -43,6 +23,12 @@ export default function myImageLoader() {
     />
   );
 }
+
+/**
+ * A style results component that displays a list of style cards and a favorites button.
+ * @param loading - A boolean indicating whether the styles are currently being loaded.
+ * @returns A JSX element representing the StyleResults component.
+ */
 
 const StyleResults = ({ loading }: { loading: boolean }) => {
   const { results, favoriteIds } = useStyleStore();

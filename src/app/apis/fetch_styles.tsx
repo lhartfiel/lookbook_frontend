@@ -1,6 +1,12 @@
 const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/";
 
-console.log("Base URL:", baseUrl);
+/**
+ * Fetches styles from the API based on a user's text query.
+ * @param queryText - The user's search query describing their desired hairstyle.
+ * @returns A promise that resolves to an object containing search results, AI response, and pagination data.
+ * @throws Error if the fetch request fails or returns a non-200 status.
+ */
+
 export const fetchStyles = async (queryText: string) => {
   try {
     const fullUrl = `${baseUrl}styles/search/`;

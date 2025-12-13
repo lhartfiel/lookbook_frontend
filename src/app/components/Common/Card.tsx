@@ -6,10 +6,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMaximize, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { Button } from "./Button";
-import { ImageType, ResultsType } from "../StyleResults";
+import { ImageType, ResultsType } from "@/app/types";
 import { useStyleStore } from "@/app/state/store";
 import { useRouter } from "next/navigation";
 import { StyleGallery } from "../StyleGallery";
+
+/**
+ * A Card component that displays style information including an image, title, stylist name, description, and favorite functionality.
+ * @param result - An object containing style details such as id, title, stylist_name, description, and style_image.
+ * @returns A JSX element representing the Card component.
+ */
 
 const Card = ({ result }: { result: ResultsType }) => {
   const router = useRouter();

@@ -1,5 +1,9 @@
 import { create } from "zustand";
-import { ResultsType } from "../components/StyleResults";
+import { ResultsType } from "../types";
+
+/**
+ * Interface defining the structure of the style store used for state management.
+ */
 
 interface StyleStore {
   aiResponse: string;
@@ -17,6 +21,10 @@ interface StyleStore {
   updateThemeMode: (themeModeIsDark: boolean) => void;
   setSelectedStyle: (style: ResultsType) => void;
 }
+
+/**
+ * Zustand store for managing style-related state in the application.
+ */
 
 const useStyleStore = create<StyleStore>((set) => ({
   aiResponse: "",
