@@ -10,6 +10,12 @@ import { ToggleMode } from "./Common/ToggleMode";
 import { FavoritesLoader } from "./FavoritesLoader";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
+/**
+ * A base layout component that sets up the overall structure of the application, including theme management and navigation.
+ * @param childItems - The child React nodes to be rendered within the layout.
+ * @returns A JSX element representing the BaseLayout component.
+ */
+
 const barlow = Barlow({
   variable: "--font-barlow",
   subsets: ["latin"],

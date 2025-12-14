@@ -1,6 +1,11 @@
 import { useStyleStore } from "../state/store";
 import { TypeAnimation } from "react-type-animation";
 
+/**
+ * A component that displays the AI-generated style response with a typing animation.
+ * @returns A JSX element representing the StyleTextResponse component.
+ */
+
 const StyleTextResponse = () => {
   const { aiResponse, aiResponseInitialized } = useStyleStore();
   return (

@@ -1,22 +1,30 @@
 import { create } from "zustand";
-import { ResultsType } from "../components/StyleResults";
+import { HairstyleType } from "../types";
+
+/**
+ * Interface defining the structure of the style store used for state management.
+ */
 
 interface StyleStore {
   aiResponse: string;
   aiResponseInitialized: boolean;
-  favorites: ResultsType[];
+  favorites: HairstyleType[];
   favoriteIds: string[];
-  results: ResultsType[];
-  selectedStyle: ResultsType | null;
+  results: HairstyleType[];
+  selectedStyle: HairstyleType | null;
   themeModeIsDark: boolean;
-  updateResults: (results: ResultsType[]) => void;
-  updateFavorites: (favorites: ResultsType[]) => void;
+  updateResults: (results: HairstyleType[]) => void;
+  updateFavorites: (favorites: HairstyleType[]) => void;
   updateFavoriteIds: (favoriteIds: string[]) => void;
   updateResponseInitialized: (updateResponseInitialized: boolean) => void;
   updateAiResponse: (aiResponse: string) => void;
   updateThemeMode: (themeModeIsDark: boolean) => void;
-  setSelectedStyle: (style: ResultsType) => void;
+  setSelectedStyle: (style: HairstyleType) => void;
 }
+
+/**
+ * Zustand store for managing style-related state in the application.
+ */
 
 const useStyleStore = create<StyleStore>((set) => ({
   aiResponse: "",
