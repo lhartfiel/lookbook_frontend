@@ -17,6 +17,7 @@ export interface ImageType {
 /**
  * Represents a complete hairstyle with all associated metadata.
  */
+
 export interface HairstyleType {
   client_permission: boolean;
   created_at: string;
@@ -31,4 +32,12 @@ export interface HairstyleType {
   thickness: string;
   title: string;
   updated_at: string;
+}
+
+/**
+ * Interface for image information used in galleries.
+ */
+export interface ImageInfo {
+  images: ImageType[];
+  title: string;
 }

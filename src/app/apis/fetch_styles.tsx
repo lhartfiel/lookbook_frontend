@@ -1,3 +1,4 @@
+import { HairstyleType } from "../types";
 const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/";
 
 /**
@@ -7,10 +8,20 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/";
  * @throws Error if the fetch request fails or returns a non-ok status (i.e., any status code outside the 2xx range).
  */
 
-export const fetchStyles = async (queryText: string) => {
+interface FetchStylesResponse {
+  count: number;
+  results: HairstyleType[];
+  aiResponse: string;
+  next: string | null;
+  previous: string | null;
+}
+
+export const fetchStyles = async (
+  queryText: string
+): Promise<FetchStylesResponse> => {
+
   try {
     const fullUrl = `${baseUrl}styles/search/`;
-    console.log("Full URL:", fullUrl);
     const response = await fetch(fullUrl, {
       method: "POST",
       headers: {

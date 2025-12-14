@@ -25,19 +25,17 @@ export default function imageSkeleton(key?: number) {
   );
 }
 
-/**
- * A style results component that displays a list of style cards and a favorites button.
- * @param loading - A boolean indicating whether the styles are currently being loaded.
- * @returns A JSX element representing the StyleResults component.
- */
+interface StyleResultsProps {
+  loading: boolean;
+}
 
-const StyleResults = ({ loading }: { loading: boolean }) => {
+const StyleResults = ({ loading }: StyleResultsProps) => {
   const { results, favoriteIds } = useStyleStore();
   const router = useRouter();
 
   // Calculate favorites count from favoriteIds
   const favoritedLength = favoriteIds.length;
-  const goToFavorites = () => {
+  const goToFavorites = (): void => {
     router.push("/favorites");
   };
 

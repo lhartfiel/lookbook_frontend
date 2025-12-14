@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMaximize, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { Button } from "./Button";
-import { ImageType, HairstyleType } from "../../types";
 import { useStyleStore } from "@/app/state/store";
 import { useRouter } from "next/navigation";
 import { StyleGallery } from "../StyleGallery";
+import { ImageInfo, ImageType, HairstyleType } from "../../types";
 
 /**
  * A Card component that displays style information including an image, title, stylist name, description, and favorite functionality.
@@ -17,28 +17,36 @@ import { StyleGallery } from "../StyleGallery";
  * @returns A JSX element representing the Card component.
  */
 
-const Card = ({ result }: { result: HairstyleType }) => {
+interface CardProps {
+  result: HairstyleType;
+}
+
+const Card = ({ result }: CardProps) => {
   const router = useRouter();
-  const [isImageLoading, setIsImageLoading] = useState(true);
-  const [showDisplay, setShowDisplay] = useState(false);
-  const [activeImages, setActiveImages] = useState<{
-    images: ImageType[] | [];
-    title: string;
-  }>({ images: [], title: "" });
+  const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
+  const [showDisplay, setShowDisplay] = useState<boolean>(false);
+  const [activeImages, setActiveImages] = useState<ImageInfo>({
+    images: [],
+    title: "",
+  });
   const { setSelectedStyle, favoriteIds, updateFavoriteIds } = useStyleStore();
 
-  const toggleGallery = (images: ImageType[] | [], title: string) => {
+  const toggleGallery = (images: ImageType[], title: string): void => {
     setActiveImages({ images, title });
     setShowDisplay((prev) => !prev);
   };
+  
+  const goToStyle = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    result: HairstyleType
+  ): void => {
 
-  const goToStyle = (e: React.MouseEvent, result: HairstyleType) => {
     e.preventDefault();
     setSelectedStyle(result);
     router.push(`/style/${result.id}`);
   };
 
-  const handleFavoriteStyle = (styleId: number) => {
+  const handleFavoriteStyle = (styleId: number): void => {
     const style = localStorage.getItem("favorited");
     let favoritedStyle = style?.split(",").filter((id) => id !== "") || [];
 
@@ -120,7 +128,9 @@ const Card = ({ result }: { result: HairstyleType }) => {
             customClasses="justify-end items-end"
             text="See Style Details"
             type="text"
-            callback={(e: React.MouseEvent) => goToStyle(e, result)}
+            callback={(e: React.MouseEvent<HTMLButtonElement>) =>
+              goToStyle(e, result)
+            }
           ></Button>
         </article>
       </div>

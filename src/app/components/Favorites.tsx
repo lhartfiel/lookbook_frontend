@@ -2,6 +2,7 @@
 import { useStyleStore } from "../state/store";
 import { Card } from "./Common/Card";
 import { BackButton } from "./Common/BackButton";
+import { ResultsType } from "../types";
 
 /**
  * A favorites component that displays a list of favorited styles.
@@ -12,7 +13,9 @@ const Favorites = () => {
   const { favorites } = useStyleStore();
 
   // Ensure favorites is an array
-  const favoritesArray = Array.isArray(favorites) ? favorites : [];
+  const favoritesArray: ResultsType[] = Array.isArray(favorites)
+    ? favorites
+    : [];
 
   return (
     <div className="col-span-full xl:col-span-10 xl:col-start-2 flex flex-col">

@@ -9,13 +9,12 @@ import { faToggleOff, faToggleOn } from "@fortawesome/free-solid-svg-icons";
  * @returns A JSX element representing the ToggleMode component.
  */
 
-const ToggleMode = ({
-  handleToggle,
-  showDarkMode,
-}: {
+interface ToggleModeProps {
   handleToggle: () => void;
   showDarkMode: boolean;
-}) => {
+}
+
+const ToggleMode = ({ handleToggle, showDarkMode }: ToggleModeProps) => {
   return (
     <>
       <button onClick={handleToggle} aria-label="Toggle light and dark mode">
@@ -25,6 +24,7 @@ const ToggleMode = ({
         ></FontAwesomeIcon>
       </button>
     </>
+
   );
 };
 

@@ -16,8 +16,8 @@ import { Tag } from "./Common/Tag";
 
 const StyleDetail = () => {
   const router = useRouter();
-  const [showGallery, setShowGallery] = useState(false);
-  const [photoIsHovered, setPhotoIsHovered] = useState(false);
+  const [showGallery, setShowGallery] = useState<boolean>(false);
+  const [photoIsHovered, setPhotoIsHovered] = useState<boolean>(false);
   const { selectedStyle } = useStyleStore();
 
   useEffect(() => {
@@ -27,11 +27,11 @@ const StyleDetail = () => {
     }
   }, []);
 
-  const toggleGallery = () => {
+  const toggleGallery = (): void => {
     setShowGallery((prev) => !prev);
   };
 
-  const hoverImage = () => {
+  const hoverImage = (): void => {
     setPhotoIsHovered((prev) => !prev);
   };
   return (
@@ -107,7 +107,7 @@ const StyleDetail = () => {
       </div>
       {showGallery && (
         <StyleGallery
-          handleLightbox={() => toggleGallery()}
+          handleLightbox={toggleGallery}
           showLightbox={showGallery}
           imageInfo={{
             images: selectedStyle?.style_image ?? [],

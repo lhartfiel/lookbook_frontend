@@ -1,3 +1,4 @@
+import { HairstyleType } from "../types";
 const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/";
 
 /**
@@ -7,7 +8,14 @@ const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/";
  * @throws Error if the fetch request fails or if there's a network error.
  */
 
-export const fetchFavorites = async (ids: string) => {
+
+interface FetchFavoritesResponse {
+  results: HairstyleType[];
+}
+
+export const fetchFavorites = async (
+  ids: string
+): Promise<FetchFavoritesResponse | HairstyleType[]> => {
   try {
     const response = await fetch(`${url}favorites/?ids=${ids}`);
     const results = await response.json();

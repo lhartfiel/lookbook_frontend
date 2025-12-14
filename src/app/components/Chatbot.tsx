@@ -28,7 +28,7 @@ const Chatbot = () => {
     mutationFn: (value: string) => fetchStyles(value),
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const query = textareaRef.current?.value?.trim() || "";
 
@@ -49,16 +49,22 @@ const Chatbot = () => {
 
   useEffect(() => {
     updateResponseInitialized(false);
-    if (!mutation.isPending && mutation?.data) {
+    if (!mutation.isPending && mutation.data) {
       updateResponseInitialized(true);
-      updateResults(mutation?.data.results);
-      updateAiResponse(mutation?.data.aiResponse);
+      updateResults(mutation.data.results);
+      updateAiResponse(mutation.data.aiResponse);
     }
-  }, [mutation.isPending]);
+  }, [
+    mutation.isPending,
+    mutation.data,
+    updateResults,
+    updateAiResponse,
+    updateResponseInitialized,
+  ]);
 
   useEffect(() => {
     updateResponseInitialized(false);
-  }, []);
+  }, [updateResponseInitialized]);
 
   return (
     <>

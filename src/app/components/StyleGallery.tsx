@@ -3,10 +3,10 @@ import { createPortal } from "react-dom";
 import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import { Thumbnails } from "yet-another-react-lightbox/plugins";
-import { ImageType } from "../types";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import { ImageInfo } from "../types";
 
 /**
  * A style gallery component that displays a lightbox gallery of images.
@@ -16,26 +16,23 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
  * @returns A JSX element representing the StyleGallery component.
  */
 
-interface ImageInfo {
-  images: ImageType[];
-  title: string;
+interface StyleGalleryProps {
+  handleLightbox: () => void;
+  showLightbox: boolean;
+  imageInfo: ImageInfo;
 }
 
 const StyleGallery = ({
   handleLightbox,
   showLightbox,
   imageInfo,
-}: {
-  handleLightbox: () => void;
-  showLightbox: boolean;
-  imageInfo: ImageInfo;
-}) => {
+}: StyleGalleryProps) => {
   const captionsRef = useRef(null);
   const thumbnailsRef = useRef(null);
   return createPortal(
     <Lightbox
       open={showLightbox}
-      close={() => handleLightbox()}
+      close={handleLightbox}
       plugins={[Captions, Thumbnails]}
       captions={{ ref: captionsRef }}
       styles={{ container: { backgroundColor: "rgba(20,20,20, 1)" } }}
