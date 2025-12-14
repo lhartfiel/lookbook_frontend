@@ -25,7 +25,7 @@ const BaseLayout = ({ childItems }: BaseLayoutProps) => {
   const { themeModeIsDark, updateThemeMode } = useStyleStore();
 
   useEffect(() => {
-    const savedTheme: string | null = localStorage.getItem("dark-theme");
+    const savedTheme = localStorage.getItem("dark-theme");
     const isDark = savedTheme === "true";
     updateThemeMode(isDark);
   }, [updateThemeMode]);
