@@ -56,7 +56,7 @@ const Card = ({ result }: CardProps) => {
     localStorage.setItem("favorited", updatedIds);
   };
 
-  const isFavorited: boolean = favoriteIds.includes(result?.id.toString());
+  const isFavorited = favoriteIds.includes(result?.id.toString());
 
   return (
     <>
