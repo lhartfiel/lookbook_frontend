@@ -93,7 +93,7 @@ const StyleDetail = () => {
           </span>
           {selectedStyle?.tags && selectedStyle?.tags.length > 0 && (
             <div className="mt-5">
-              {selectedStyle?.tags.map((tag) => (
+              {selectedStyle.tags.map((tag) => (
                 <Tag tagName={tag} key={tag} />
               ))}
             </div>
