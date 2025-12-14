@@ -4,6 +4,11 @@ import { Card } from "./Common/Card";
 import { BackButton } from "./Common/BackButton";
 import { ResultsType } from "../types";
 
+/**
+ * A favorites component that displays a list of favorited styles.
+ * @returns A JSX element representing the Favorites component.
+ */
+
 const Favorites = () => {
   const { favorites } = useStyleStore();
 

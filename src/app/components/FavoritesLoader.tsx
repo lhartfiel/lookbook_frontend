@@ -4,6 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useStyleStore } from "../state/store";
 import { fetchFavorites } from "../apis/fetch_favorites";
 
+/**
+ * A favorites loader component that synchronizes favorite styles between localStorage and the global state store.
+ * @returns null
+ */
+
 const FavoritesLoader = (): null => {
   const { favoriteIds, updateFavoriteIds, updateFavorites, favorites } =
     useStyleStore();

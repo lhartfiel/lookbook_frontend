@@ -8,6 +8,14 @@ import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import { ImageInfo } from "../types";
 
+/**
+ * A style gallery component that displays a lightbox gallery of images.
+ * @param handleLightbox - Function to toggle the lightbox visibility.
+ * @param showLightbox - Boolean indicating whether the lightbox is currently shown.
+ * @param imageInfo - An object containing images and title for the gallery.
+ * @returns A JSX element representing the StyleGallery component.
+ */
+
 interface StyleGalleryProps {
   handleLightbox: () => void;
   showLightbox: boolean;

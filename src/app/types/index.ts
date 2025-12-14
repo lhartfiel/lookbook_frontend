@@ -17,7 +17,8 @@ export interface ImageType {
 /**
  * Represents a complete hairstyle with all associated metadata.
  */
-export interface ResultsType {
+
+export interface HairstyleType {
   client_permission: boolean;
   created_at: string;
   description: string;

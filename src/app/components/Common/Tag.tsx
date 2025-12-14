@@ -1,3 +1,9 @@
+/**
+ * A tag component that displays a tag name with specific styling.
+ * @param tagName - The name of the tag to be displayed as a string.
+ * @returns A JSX element representing the Tag component.
+ */
+
 interface TagProps {
   tagName: string;
 }

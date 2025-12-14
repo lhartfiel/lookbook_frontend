@@ -1,6 +1,11 @@
 import { useRouter } from "next/navigation";
 import { Button } from "./Button";
 
+/**
+ * A back button component that navigates to the previous page when clicked.
+ * @returns A JSX element representing the BackButton component.
+ */
+
 const BackButton = () => {
   const router = useRouter();
   return (

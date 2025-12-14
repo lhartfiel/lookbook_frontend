@@ -9,10 +9,16 @@ import { Button } from "./Button";
 import { useStyleStore } from "@/app/state/store";
 import { useRouter } from "next/navigation";
 import { StyleGallery } from "../StyleGallery";
-import { ImageInfo, ImageType, ResultsType } from "@/app/types";
+import { ImageInfo, ImageType, HairstyleType } from "../../types";
+
+/**
+ * A Card component that displays style information including an image, title, stylist name, description, and favorite functionality.
+ * @param result - An object containing style details such as id, title, stylist_name, description, and style_image.
+ * @returns A JSX element representing the Card component.
+ */
 
 interface CardProps {
-  result: ResultsType;
+  result: HairstyleType;
 }
 
 const Card = ({ result }: CardProps) => {
@@ -29,11 +35,12 @@ const Card = ({ result }: CardProps) => {
     setActiveImages({ images, title });
     setShowDisplay((prev) => !prev);
   };
-
+  
   const goToStyle = (
     e: React.MouseEvent<HTMLButtonElement>,
-    result: ResultsType
+    result: HairstyleType
   ): void => {
+
     e.preventDefault();
     setSelectedStyle(result);
     router.push(`/style/${result.id}`);
@@ -103,6 +110,7 @@ const Card = ({ result }: CardProps) => {
             <h2 className="flex items-start justify-between text-h2 font-bold w-full m-0">
               {result.title}{" "}
               <button
+                aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
                 className="justify-center cursor-pointer hover:scale-105"
                 onClick={() => handleFavoriteStyle(result.id)}
               >

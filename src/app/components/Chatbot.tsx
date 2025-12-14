@@ -10,6 +10,11 @@ import Skeleton from "react-loading-skeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * A chatbot component that allows users to input style descriptions and fetches matching styles using an AI backend.
+ * @returns A JSX element representing the Chatbot component.
+ */
+
 const Chatbot = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const {

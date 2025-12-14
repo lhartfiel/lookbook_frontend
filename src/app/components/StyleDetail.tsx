@@ -9,6 +9,11 @@ import { BackButton } from "./Common/BackButton";
 import { StyleGallery } from "./StyleGallery";
 import { Tag } from "./Common/Tag";
 
+/**
+ * A style detail component that displays detailed information about a selected style, including an image gallery, description, and tags.
+ * @returns A JSX element with the style image, description and tags
+ */
+
 const StyleDetail = () => {
   const router = useRouter();
   const [showGallery, setShowGallery] = useState<boolean>(false);
