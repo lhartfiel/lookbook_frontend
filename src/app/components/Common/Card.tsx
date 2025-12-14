@@ -51,7 +51,7 @@ const Card = ({ result }: CardProps) => {
       favoritedStyle.push(styleId.toString());
     }
 
-    const updatedIds: string = favoritedStyle.join(",");
+    const updatedIds = favoritedStyle.join(",");
     updateFavoriteIds(favoritedStyle);
     localStorage.setItem("favorited", updatedIds);
   };
