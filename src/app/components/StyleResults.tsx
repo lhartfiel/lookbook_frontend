@@ -9,7 +9,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Card } from "./Common/Card";
 
 /**
- * SkeletonPlaceholder is a React component that renders a skeleton placeholder for loading states.
+ * imageSkeleton is a React component that renders a skeleton placeholder for loading states.
  * @returns A JSX element representing a skeleton placeholder.
  */
 
