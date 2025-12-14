@@ -3,12 +3,12 @@ import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * A versatile button component that can function as a text link, a standard button, or a submit button.
- * @param arrowPosition - Position of the arrow icon ("right" or "left").
- * @param childItems - Additional React nodes to be rendered inside the button.
- * @param customClasses - Custom CSS classes to apply to the button.
+ * @param arrowPosition (optional) - Position of the arrow icon ("right" or "left").
+ * @param childItems (optional) - Additional React nodes to be rendered inside the button.
+ * @param customClasses (optional) - Custom CSS classes to apply to the button.
  * @param type - Type of the button ("text", "button", or "submit").
  * @param text - Text to be displayed on the button.
- * @param callback - Function to be called when the button is clicked.
+ * @param callback (optional) - Function to be called when the button is clicked.
  * @returns A JSX element representing the Button component.
  */
 
