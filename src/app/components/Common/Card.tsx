@@ -102,7 +102,7 @@ const Card = ({ result }: { result: HairstyleType }) => {
             <h2 className="flex items-start justify-between text-h2 font-bold w-full m-0">
               {result.title}{" "}
               <button
-                aria-label="Toggle favorite hairstyles"
+                aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
                 className="justify-center cursor-pointer hover:scale-105"
                 onClick={() => handleFavoriteStyle(result.id)}
               >
