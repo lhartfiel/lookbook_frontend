@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMaximize, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { Button } from "./Button";
-import { ImageType, ResultsType } from "@/app/types";
+import { ImageType, HairstyleType } from "../../types";
 import { useStyleStore } from "@/app/state/store";
 import { useRouter } from "next/navigation";
 import { StyleGallery } from "../StyleGallery";
@@ -17,7 +17,7 @@ import { StyleGallery } from "../StyleGallery";
  * @returns A JSX element representing the Card component.
  */
 
-const Card = ({ result }: { result: ResultsType }) => {
+const Card = ({ result }: { result: HairstyleType }) => {
   const router = useRouter();
   const [isImageLoading, setIsImageLoading] = useState(true);
   const [showDisplay, setShowDisplay] = useState(false);
@@ -32,7 +32,7 @@ const Card = ({ result }: { result: ResultsType }) => {
     setShowDisplay((prev) => !prev);
   };
 
-  const goToStyle = (e: React.MouseEvent, result: ResultsType) => {
+  const goToStyle = (e: React.MouseEvent, result: HairstyleType) => {
     e.preventDefault();
     setSelectedStyle(result);
     router.push(`/style/${result.id}`);
@@ -102,7 +102,7 @@ const Card = ({ result }: { result: ResultsType }) => {
             <h2 className="flex items-start justify-between text-h2 font-bold w-full m-0">
               {result.title}{" "}
               <button
-                aria-label="Click to favorite liked hairstyles"
+                aria-label="Toggle favorite hairstyles"
                 className="justify-center cursor-pointer hover:scale-105"
                 onClick={() => handleFavoriteStyle(result.id)}
               >

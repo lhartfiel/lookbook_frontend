@@ -9,13 +9,14 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Card } from "./Common/Card";
 
 /**
- * Helper function that renders a skeleton placeholder for loading images.
- * @returns A JSX element with a skeleton loader.
+ * SkeletonPlaceholder is a React component that renders a skeleton placeholder for loading states.
+ * @returns A JSX element representing a skeleton placeholder.
  */
 
-export default function myImageLoader() {
+export default function imageSkeleton(key?: number) {
   return (
     <Skeleton
+      key={key}
       baseColor="#f5f5f5"
       highlightColor="#fff"
       width="100%"
@@ -43,16 +44,7 @@ const StyleResults = ({ loading }: { loading: boolean }) => {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-[1024px] my-8 mx-auto justify-center">
-        {loading &&
-          Array.from({ length: 3 }, (_, idx) => (
-            <Skeleton
-              key={idx}
-              baseColor="#f5f5f5"
-              highlightColor="#fff"
-              width="100%"
-              height="240px"
-            />
-          ))}
+        {loading && Array.from({ length: 3 }, (_, idx) => imageSkeleton(idx))}
 
         <div className="flex items-center justify-end w-full col-span-full text-right">
           <Button
