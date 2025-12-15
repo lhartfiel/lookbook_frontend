@@ -2,7 +2,7 @@
 import { useStyleStore } from "../state/store";
 import { Card } from "./Common/Card";
 import { BackButton } from "./Common/BackButton";
-import { ResultsType } from "../types";
+import { HairstyleType } from "../types";
 
 /**
  * A favorites component that displays a list of favorited styles.
@@ -13,7 +13,7 @@ const Favorites = () => {
   const { favorites } = useStyleStore();
 
   // Ensure favorites is an array
-  const favoritesArray: ResultsType[] = Array.isArray(favorites)
+  const favoritesArray: HairstyleType[] = Array.isArray(favorites)
     ? favorites
     : [];
 
